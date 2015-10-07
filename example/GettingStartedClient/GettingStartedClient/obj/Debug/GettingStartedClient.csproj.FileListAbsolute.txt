@@ -1,0 +1,6 @@
+C:\Users\Evan\Documents\Development\CSharp\GettingStartedClient\GettingStartedClient\bin\Debug\GettingStartedClient.exe.config
+C:\Users\Evan\Documents\Development\CSharp\GettingStartedClient\GettingStartedClient\bin\Debug\GettingStartedClient.exe
+C:\Users\Evan\Documents\Development\CSharp\GettingStartedClient\GettingStartedClient\bin\Debug\GettingStartedClient.pdb
+C:\Users\Evan\Documents\Development\CSharp\GettingStartedClient\GettingStartedClient\obj\Debug\GettingStartedClient.csprojResolveAssemblyReference.cache
+C:\Users\Evan\Documents\Development\CSharp\GettingStartedClient\GettingStartedClient\obj\Debug\GettingStartedClient.exe
+C:\Users\Evan\Documents\Development\CSharp\GettingStartedClient\GettingStartedClient\obj\Debug\GettingStartedClient.pdb
