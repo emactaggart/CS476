@@ -6,3 +6,11 @@ C:\Users\Evan\Documents\Development\CSharp\GettingStartedHost\GettingStartedHost
 C:\Users\Evan\Documents\Development\CSharp\GettingStartedHost\GettingStartedHost\obj\Debug\GettingStartedHost.pdb
 C:\Users\Evan\Documents\Development\CSharp\GettingStartedHost\GettingStartedHost\bin\Debug\GettingStartedLib.dll
 C:\Users\Evan\Documents\Development\CSharp\GettingStartedHost\GettingStartedHost\bin\Debug\GettingStartedLib.pdb
+C:\Users\Evan\Documents\Development\CSharp\CS476\example\GettingStartedHost\GettingStartedHost\bin\Debug\GettingStartedHost.exe.config
+C:\Users\Evan\Documents\Development\CSharp\CS476\example\GettingStartedHost\GettingStartedHost\bin\Debug\GettingStartedHost.exe
+C:\Users\Evan\Documents\Development\CSharp\CS476\example\GettingStartedHost\GettingStartedHost\bin\Debug\GettingStartedHost.pdb
+C:\Users\Evan\Documents\Development\CSharp\CS476\example\GettingStartedHost\GettingStartedHost\bin\Debug\GettingStartedLib.dll
+C:\Users\Evan\Documents\Development\CSharp\CS476\example\GettingStartedHost\GettingStartedHost\bin\Debug\GettingStartedLib.pdb
+C:\Users\Evan\Documents\Development\CSharp\CS476\example\GettingStartedHost\GettingStartedHost\obj\Debug\GettingStartedHost.csprojResolveAssemblyReference.cache
+C:\Users\Evan\Documents\Development\CSharp\CS476\example\GettingStartedHost\GettingStartedHost\obj\Debug\GettingStartedHost.exe
+C:\Users\Evan\Documents\Development\CSharp\CS476\example\GettingStartedHost\GettingStartedHost\obj\Debug\GettingStartedHost.pdb
