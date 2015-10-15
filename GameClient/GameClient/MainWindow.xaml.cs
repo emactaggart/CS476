@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using GameClient.GameServerService;
 
 namespace GameClient
 {
@@ -23,6 +24,25 @@ namespace GameClient
         public MainWindow()
         {
             InitializeComponent();
+            DoStuff();
+        }
+
+        private void Window_SourceInitialized(object sender, EventArgs e)
+        {
+
+        }
+
+        public void DoStuff()
+        {
+            try
+            {
+                this.Response.Text = "HEADS UP\n";
+                this.Response.Text += ClientHelper.DoStuff();
+            } 
+            catch (Exception e)
+            {
+                this.Response.Text = "Unable to communicate with host." + e.Message;
+            }
         }
     }
 }
