@@ -4,31 +4,32 @@
     <xsd:schema targetNamespace="http://Microsoft.ServiceModel.Samples/Imports">
       <xsd:import schemaLocation="http://localhost:8000/GameServer/?xsd=xsd0" namespace="http://Microsoft.ServiceModel.Samples" />
       <xsd:import schemaLocation="http://localhost:8000/GameServer/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8000/GameServer/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/GameServer" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IGameServer_Add_InputMessage">
-    <wsdl:part name="parameters" element="tns:Add" />
+  <wsdl:message name="IGameServer_GetPlayerStats_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayerStats" />
   </wsdl:message>
-  <wsdl:message name="IGameServer_Add_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AddResponse" />
+  <wsdl:message name="IGameServer_GetPlayerStats_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayerStatsResponse" />
   </wsdl:message>
-  <wsdl:message name="IGameServer_Subtract_InputMessage">
-    <wsdl:part name="parameters" element="tns:Subtract" />
+  <wsdl:message name="IGameServer_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
   </wsdl:message>
-  <wsdl:message name="IGameServer_Subtract_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SubtractResponse" />
+  <wsdl:message name="IGameServer_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
   </wsdl:message>
-  <wsdl:message name="IGameServer_Multiply_InputMessage">
-    <wsdl:part name="parameters" element="tns:Multiply" />
+  <wsdl:message name="IGameServer_PlayerMove_InputMessage">
+    <wsdl:part name="parameters" element="tns:PlayerMove" />
   </wsdl:message>
-  <wsdl:message name="IGameServer_Multiply_OutputMessage">
-    <wsdl:part name="parameters" element="tns:MultiplyResponse" />
+  <wsdl:message name="IGameServer_PlayerMove_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PlayerMoveResponse" />
   </wsdl:message>
-  <wsdl:message name="IGameServer_Divide_InputMessage">
-    <wsdl:part name="parameters" element="tns:Divide" />
+  <wsdl:message name="IGameServer_GetGameList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGameList" />
   </wsdl:message>
-  <wsdl:message name="IGameServer_Divide_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DivideResponse" />
+  <wsdl:message name="IGameServer_GetGameList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGameListResponse" />
   </wsdl:message>
   <wsdl:message name="IGameServer_Login_InputMessage">
     <wsdl:part name="parameters" element="tns:Login" />
@@ -37,21 +38,21 @@
     <wsdl:part name="parameters" element="tns:LoginResponse" />
   </wsdl:message>
   <wsdl:portType name="IGameServer">
-    <wsdl:operation name="Add">
-      <wsdl:input wsaw:Action="http://Microsoft.ServiceModel.Samples/IGameServer/Add" message="tns:IGameServer_Add_InputMessage" />
-      <wsdl:output wsaw:Action="http://Microsoft.ServiceModel.Samples/IGameServer/AddResponse" message="tns:IGameServer_Add_OutputMessage" />
+    <wsdl:operation name="GetPlayerStats">
+      <wsdl:input wsaw:Action="http://Microsoft.ServiceModel.Samples/IGameServer/GetPlayerStats" message="tns:IGameServer_GetPlayerStats_InputMessage" />
+      <wsdl:output wsaw:Action="http://Microsoft.ServiceModel.Samples/IGameServer/GetPlayerStatsResponse" message="tns:IGameServer_GetPlayerStats_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="Subtract">
-      <wsdl:input wsaw:Action="http://Microsoft.ServiceModel.Samples/IGameServer/Subtract" message="tns:IGameServer_Subtract_InputMessage" />
-      <wsdl:output wsaw:Action="http://Microsoft.ServiceModel.Samples/IGameServer/SubtractResponse" message="tns:IGameServer_Subtract_OutputMessage" />
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://Microsoft.ServiceModel.Samples/IGameServer/Login" message="tns:IGameServer_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://Microsoft.ServiceModel.Samples/IGameServer/LoginResponse" message="tns:IGameServer_Login_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="Multiply">
-      <wsdl:input wsaw:Action="http://Microsoft.ServiceModel.Samples/IGameServer/Multiply" message="tns:IGameServer_Multiply_InputMessage" />
-      <wsdl:output wsaw:Action="http://Microsoft.ServiceModel.Samples/IGameServer/MultiplyResponse" message="tns:IGameServer_Multiply_OutputMessage" />
+    <wsdl:operation name="PlayerMove">
+      <wsdl:input wsaw:Action="http://Microsoft.ServiceModel.Samples/IGameServer/PlayerMove" message="tns:IGameServer_PlayerMove_InputMessage" />
+      <wsdl:output wsaw:Action="http://Microsoft.ServiceModel.Samples/IGameServer/PlayerMoveResponse" message="tns:IGameServer_PlayerMove_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="Divide">
-      <wsdl:input wsaw:Action="http://Microsoft.ServiceModel.Samples/IGameServer/Divide" message="tns:IGameServer_Divide_InputMessage" />
-      <wsdl:output wsaw:Action="http://Microsoft.ServiceModel.Samples/IGameServer/DivideResponse" message="tns:IGameServer_Divide_OutputMessage" />
+    <wsdl:operation name="GetGameList">
+      <wsdl:input wsaw:Action="http://Microsoft.ServiceModel.Samples/IGameServer/GetGameList" message="tns:IGameServer_GetGameList_InputMessage" />
+      <wsdl:output wsaw:Action="http://Microsoft.ServiceModel.Samples/IGameServer/GetGameListResponse" message="tns:IGameServer_GetGameList_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Login">
       <wsdl:input wsaw:Action="http://Microsoft.ServiceModel.Samples/IGameServer/Login" message="tns:IGameServer_Login_InputMessage" />

@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CS_476_Client
+namespace GameClient.Views 
 {
     public partial class Signup : Form
     {

@@ -1,4 +1,4 @@
-﻿namespace CS_476_Client
+﻿namespace GameClient.Views
 {
     partial class Signup
     {
