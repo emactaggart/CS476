@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameClient.GameServerService;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,6 +20,7 @@ namespace CS_476_Client
 
         private void button2_Click(object sender, EventArgs e)
         {
+            //Register
             this.Hide();
             Registration R = new Registration();
             R.ShowDialog();
@@ -26,6 +28,7 @@ namespace CS_476_Client
 
         private void button3_Click(object sender, EventArgs e)
         {
+            //Play as Guest
             this.Hide();
             MainPage M = new MainPage();
             M.ShowDialog();
@@ -33,6 +36,9 @@ namespace CS_476_Client
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //login
+            GameServerClient client = new GameServerClient();
+            
             this.Hide();
             MainPage M = new MainPage();
             M.ShowDialog();

@@ -30,6 +30,12 @@
   <wsdl:message name="IGameServer_Divide_OutputMessage">
     <wsdl:part name="parameters" element="tns:DivideResponse" />
   </wsdl:message>
+  <wsdl:message name="IGameServer_Login_InputMessage">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="IGameServer_Login_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
   <wsdl:portType name="IGameServer">
     <wsdl:operation name="Add">
       <wsdl:input wsaw:Action="http://Microsoft.ServiceModel.Samples/IGameServer/Add" message="tns:IGameServer_Add_InputMessage" />
@@ -46,6 +52,10 @@
     <wsdl:operation name="Divide">
       <wsdl:input wsaw:Action="http://Microsoft.ServiceModel.Samples/IGameServer/Divide" message="tns:IGameServer_Divide_InputMessage" />
       <wsdl:output wsaw:Action="http://Microsoft.ServiceModel.Samples/IGameServer/DivideResponse" message="tns:IGameServer_Divide_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input wsaw:Action="http://Microsoft.ServiceModel.Samples/IGameServer/Login" message="tns:IGameServer_Login_InputMessage" />
+      <wsdl:output wsaw:Action="http://Microsoft.ServiceModel.Samples/IGameServer/LoginResponse" message="tns:IGameServer_Login_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
 </wsdl:definitions>

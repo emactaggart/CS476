@@ -38,6 +38,12 @@ namespace GameClient.GameServerService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IGameServer/Divide", ReplyAction="http://Microsoft.ServiceModel.Samples/IGameServer/DivideResponse")]
         System.Threading.Tasks.Task<double> DivideAsync(double n1, double n2);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IGameServer/Login", ReplyAction="http://Microsoft.ServiceModel.Samples/IGameServer/LoginResponse")]
+        bool Login();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IGameServer/Login", ReplyAction="http://Microsoft.ServiceModel.Samples/IGameServer/LoginResponse")]
+        System.Threading.Tasks.Task<bool> LoginAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -97,6 +103,14 @@ namespace GameClient.GameServerService {
         
         public System.Threading.Tasks.Task<double> DivideAsync(double n1, double n2) {
             return base.Channel.DivideAsync(n1, n2);
+        }
+        
+        public bool Login() {
+            return base.Channel.Login();
+        }
+        
+        public System.Threading.Tasks.Task<bool> LoginAsync() {
+            return base.Channel.LoginAsync();
         }
     }
 }
