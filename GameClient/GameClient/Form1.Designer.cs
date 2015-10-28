@@ -1,6 +1,6 @@
 ﻿namespace CS_476_Client
 {
-    partial class Form1
+    partial class Signup
     {
         /// <summary>
         /// Required designer variable.

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace CS_476_Client
 {
-    public partial class Form1 : Form
+    public partial class Signup : Form
     {
-        public Form1()
+        public Signup()
         {
             InitializeComponent();
         }

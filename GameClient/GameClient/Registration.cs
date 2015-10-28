@@ -32,7 +32,7 @@ namespace CS_476_Client
         private void button2_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Form1 F = new Form1();
+            Signup F = new Signup();
             F.ShowDialog();
         }
     }

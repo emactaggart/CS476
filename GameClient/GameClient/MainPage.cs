@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TicTacToeWin32;
 
 namespace CS_476_Client
 {
@@ -20,7 +21,7 @@ namespace CS_476_Client
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Form1 F1 = new Form1();
+            Signup F1 = new Signup();
             F1.ShowDialog();
         }
 
@@ -48,6 +49,11 @@ namespace CS_476_Client
 
         private void button2_Click(object sender, EventArgs e)
         {
+            this.Hide();
+            Form1 T = new Form1();
+            T.ShowDialog();
+            
+            /*
             if (label1.Text == "No game selected")
             {
                 label2.Text = "Please select a game";
@@ -57,6 +63,7 @@ namespace CS_476_Client
             {
                 MessageBox.Show(label1.Text);
             }
+            */
         }
 
         private void MainPage_Load(object sender, EventArgs e)
