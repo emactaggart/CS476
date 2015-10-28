@@ -96,7 +96,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IGameServer_Add_Input_policy">
+  <wsp:Policy wsu:Id="WSHttpBinding_IGameServer_GetPlayerStats_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -115,7 +115,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IGameServer_Add_output_policy">
+  <wsp:Policy wsu:Id="WSHttpBinding_IGameServer_GetPlayerStats_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -134,7 +134,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IGameServer_Subtract_Input_policy">
+  <wsp:Policy wsu:Id="WSHttpBinding_IGameServer_Login_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -153,7 +153,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IGameServer_Subtract_output_policy">
+  <wsp:Policy wsu:Id="WSHttpBinding_IGameServer_Login_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -172,7 +172,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IGameServer_Multiply_Input_policy">
+  <wsp:Policy wsu:Id="WSHttpBinding_IGameServer_PlayerMove_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -191,7 +191,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IGameServer_Multiply_output_policy">
+  <wsp:Policy wsu:Id="WSHttpBinding_IGameServer_PlayerMove_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -210,7 +210,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IGameServer_Divide_Input_policy">
+  <wsp:Policy wsu:Id="WSHttpBinding_IGameServer_GetGameList_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -229,7 +229,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IGameServer_Divide_output_policy">
+  <wsp:Policy wsu:Id="WSHttpBinding_IGameServer_GetGameList_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -253,47 +253,47 @@
   <wsdl:binding name="WSHttpBinding_IGameServer" type="i0:IGameServer">
     <wsp:PolicyReference URI="#WSHttpBinding_IGameServer_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="Add">
-      <soap12:operation soapAction="http://Microsoft.ServiceModel.Samples/IGameServer/Add" style="document" />
+    <wsdl:operation name="GetPlayerStats">
+      <soap12:operation soapAction="http://Microsoft.ServiceModel.Samples/IGameServer/GetPlayerStats" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSHttpBinding_IGameServer_Add_Input_policy" />
+        <wsp:PolicyReference URI="#WSHttpBinding_IGameServer_GetPlayerStats_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSHttpBinding_IGameServer_Add_output_policy" />
+        <wsp:PolicyReference URI="#WSHttpBinding_IGameServer_GetPlayerStats_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Subtract">
-      <soap12:operation soapAction="http://Microsoft.ServiceModel.Samples/IGameServer/Subtract" style="document" />
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="http://Microsoft.ServiceModel.Samples/IGameServer/Login" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSHttpBinding_IGameServer_Subtract_Input_policy" />
+        <wsp:PolicyReference URI="#WSHttpBinding_IGameServer_Login_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSHttpBinding_IGameServer_Subtract_output_policy" />
+        <wsp:PolicyReference URI="#WSHttpBinding_IGameServer_Login_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Multiply">
-      <soap12:operation soapAction="http://Microsoft.ServiceModel.Samples/IGameServer/Multiply" style="document" />
+    <wsdl:operation name="PlayerMove">
+      <soap12:operation soapAction="http://Microsoft.ServiceModel.Samples/IGameServer/PlayerMove" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSHttpBinding_IGameServer_Multiply_Input_policy" />
+        <wsp:PolicyReference URI="#WSHttpBinding_IGameServer_PlayerMove_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSHttpBinding_IGameServer_Multiply_output_policy" />
+        <wsp:PolicyReference URI="#WSHttpBinding_IGameServer_PlayerMove_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Divide">
-      <soap12:operation soapAction="http://Microsoft.ServiceModel.Samples/IGameServer/Divide" style="document" />
+    <wsdl:operation name="GetGameList">
+      <soap12:operation soapAction="http://Microsoft.ServiceModel.Samples/IGameServer/GetGameList" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSHttpBinding_IGameServer_Divide_Input_policy" />
+        <wsp:PolicyReference URI="#WSHttpBinding_IGameServer_GetGameList_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSHttpBinding_IGameServer_Divide_output_policy" />
+        <wsp:PolicyReference URI="#WSHttpBinding_IGameServer_GetGameList_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>

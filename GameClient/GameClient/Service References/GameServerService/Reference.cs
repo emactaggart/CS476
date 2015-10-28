@@ -9,35 +9,153 @@
 //------------------------------------------------------------------------------
 
 namespace GameClient.GameServerService {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PlayerStats", Namespace="http://schemas.datacontract.org/2004/07/GameServer")]
+    [System.SerializableAttribute()]
+    public partial class PlayerStats : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Move", Namespace="http://schemas.datacontract.org/2004/07/GameServer")]
+    [System.SerializableAttribute()]
+    public partial class Move : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GameState", Namespace="http://schemas.datacontract.org/2004/07/GameServer")]
+    [System.SerializableAttribute()]
+    public partial class GameState : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GameDetails", Namespace="http://schemas.datacontract.org/2004/07/GameServer")]
+    [System.SerializableAttribute()]
+    public partial class GameDetails : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(Namespace="http://Microsoft.ServiceModel.Samples", ConfigurationName="GameServerService.IGameServer")]
     public interface IGameServer {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IGameServer/Add", ReplyAction="http://Microsoft.ServiceModel.Samples/IGameServer/AddResponse")]
-        double Add(double n1, double n2);
+        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IGameServer/GetPlayerStats", ReplyAction="http://Microsoft.ServiceModel.Samples/IGameServer/GetPlayerStatsResponse")]
+        GameClient.GameServerService.PlayerStats GetPlayerStats(System.Guid playerId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IGameServer/Add", ReplyAction="http://Microsoft.ServiceModel.Samples/IGameServer/AddResponse")]
-        System.Threading.Tasks.Task<double> AddAsync(double n1, double n2);
+        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IGameServer/GetPlayerStats", ReplyAction="http://Microsoft.ServiceModel.Samples/IGameServer/GetPlayerStatsResponse")]
+        System.Threading.Tasks.Task<GameClient.GameServerService.PlayerStats> GetPlayerStatsAsync(System.Guid playerId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IGameServer/Subtract", ReplyAction="http://Microsoft.ServiceModel.Samples/IGameServer/SubtractResponse")]
-        double Subtract(double n1, double n2);
+        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IGameServer/Login", ReplyAction="http://Microsoft.ServiceModel.Samples/IGameServer/LoginResponse")]
+        bool Login(System.Guid playerId, string password);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IGameServer/Subtract", ReplyAction="http://Microsoft.ServiceModel.Samples/IGameServer/SubtractResponse")]
-        System.Threading.Tasks.Task<double> SubtractAsync(double n1, double n2);
+        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IGameServer/Login", ReplyAction="http://Microsoft.ServiceModel.Samples/IGameServer/LoginResponse")]
+        System.Threading.Tasks.Task<bool> LoginAsync(System.Guid playerId, string password);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IGameServer/Multiply", ReplyAction="http://Microsoft.ServiceModel.Samples/IGameServer/MultiplyResponse")]
-        double Multiply(double n1, double n2);
+        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IGameServer/PlayerMove", ReplyAction="http://Microsoft.ServiceModel.Samples/IGameServer/PlayerMoveResponse")]
+        GameClient.GameServerService.GameState PlayerMove(System.Guid playerId, System.Guid MatchId, GameClient.GameServerService.Move move);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IGameServer/Multiply", ReplyAction="http://Microsoft.ServiceModel.Samples/IGameServer/MultiplyResponse")]
-        System.Threading.Tasks.Task<double> MultiplyAsync(double n1, double n2);
+        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IGameServer/PlayerMove", ReplyAction="http://Microsoft.ServiceModel.Samples/IGameServer/PlayerMoveResponse")]
+        System.Threading.Tasks.Task<GameClient.GameServerService.GameState> PlayerMoveAsync(System.Guid playerId, System.Guid MatchId, GameClient.GameServerService.Move move);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IGameServer/Divide", ReplyAction="http://Microsoft.ServiceModel.Samples/IGameServer/DivideResponse")]
-        double Divide(double n1, double n2);
+        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IGameServer/GetGameList", ReplyAction="http://Microsoft.ServiceModel.Samples/IGameServer/GetGameListResponse")]
+        GameClient.GameServerService.GameDetails[] GetGameList();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IGameServer/Divide", ReplyAction="http://Microsoft.ServiceModel.Samples/IGameServer/DivideResponse")]
-        System.Threading.Tasks.Task<double> DivideAsync(double n1, double n2);
+        [System.ServiceModel.OperationContractAttribute(Action="http://Microsoft.ServiceModel.Samples/IGameServer/GetGameList", ReplyAction="http://Microsoft.ServiceModel.Samples/IGameServer/GetGameListResponse")]
+        System.Threading.Tasks.Task<GameClient.GameServerService.GameDetails[]> GetGameListAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -67,36 +185,36 @@ namespace GameClient.GameServerService {
                 base(binding, remoteAddress) {
         }
         
-        public double Add(double n1, double n2) {
-            return base.Channel.Add(n1, n2);
+        public GameClient.GameServerService.PlayerStats GetPlayerStats(System.Guid playerId) {
+            return base.Channel.GetPlayerStats(playerId);
         }
         
-        public System.Threading.Tasks.Task<double> AddAsync(double n1, double n2) {
-            return base.Channel.AddAsync(n1, n2);
+        public System.Threading.Tasks.Task<GameClient.GameServerService.PlayerStats> GetPlayerStatsAsync(System.Guid playerId) {
+            return base.Channel.GetPlayerStatsAsync(playerId);
         }
         
-        public double Subtract(double n1, double n2) {
-            return base.Channel.Subtract(n1, n2);
+        public bool Login(System.Guid playerId, string password) {
+            return base.Channel.Login(playerId, password);
         }
         
-        public System.Threading.Tasks.Task<double> SubtractAsync(double n1, double n2) {
-            return base.Channel.SubtractAsync(n1, n2);
+        public System.Threading.Tasks.Task<bool> LoginAsync(System.Guid playerId, string password) {
+            return base.Channel.LoginAsync(playerId, password);
         }
         
-        public double Multiply(double n1, double n2) {
-            return base.Channel.Multiply(n1, n2);
+        public GameClient.GameServerService.GameState PlayerMove(System.Guid playerId, System.Guid MatchId, GameClient.GameServerService.Move move) {
+            return base.Channel.PlayerMove(playerId, MatchId, move);
         }
         
-        public System.Threading.Tasks.Task<double> MultiplyAsync(double n1, double n2) {
-            return base.Channel.MultiplyAsync(n1, n2);
+        public System.Threading.Tasks.Task<GameClient.GameServerService.GameState> PlayerMoveAsync(System.Guid playerId, System.Guid MatchId, GameClient.GameServerService.Move move) {
+            return base.Channel.PlayerMoveAsync(playerId, MatchId, move);
         }
         
-        public double Divide(double n1, double n2) {
-            return base.Channel.Divide(n1, n2);
+        public GameClient.GameServerService.GameDetails[] GetGameList() {
+            return base.Channel.GetGameList();
         }
         
-        public System.Threading.Tasks.Task<double> DivideAsync(double n1, double n2) {
-            return base.Channel.DivideAsync(n1, n2);
+        public System.Threading.Tasks.Task<GameClient.GameServerService.GameDetails[]> GetGameListAsync() {
+            return base.Channel.GetGameListAsync();
         }
     }
 }

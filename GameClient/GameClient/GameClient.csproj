@@ -70,10 +70,23 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Controllers\GameController.cs" />
+    <Compile Include="Controllers\InformationController.cs" />
+    <Compile Include="Controllers\TicTacToe.cs" />
+    <Compile Include="Models\GameDetails.cs" />
+    <Compile Include="Models\TicTacToeMove.cs" />
+    <Compile Include="Models\TicTacToeResults.cs" />
+    <Compile Include="Models\GameState.cs" />
+    <Compile Include="Models\GameType.cs" />
+    <Compile Include="Models\PlayerProfile.cs" />
+    <Compile Include="Models\PlayerStats.cs" />
+    <Compile Include="Utilities\BasicDisposable.cs" />
+    <Compile Include="Utilities\BasicObserver.cs" />
+    <Compile Include="Utilities\BasicObservable.cs" />
+    <Compile Include="Views\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="Views\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -82,7 +95,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Client.cs" />
+    <Compile Include="Services\Client.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -107,6 +120,15 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Service References\GameServerService\GameClient.GameServerService.GameDetails.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\GameServerService\GameClient.GameServerService.GameState.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\GameServerService\GameClient.GameServerService.PlayerStats.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\GameServerService\GameServer.wsdl" />
     <None Include="Service References\GameServerService\item.wsdl" />
     <None Include="Service References\GameServerService\item.xsd">
@@ -135,6 +157,9 @@
     <None Include="Service References\GameServerService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\GameServerService\item2.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\GameServerService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -151,6 +176,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\TicTacToe\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

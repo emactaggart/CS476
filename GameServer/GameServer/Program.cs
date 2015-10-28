@@ -11,14 +11,23 @@ namespace GameServer
     public interface IGameServer
     {
         [OperationContract]
-        double Add(double n1, double n2);
+        PlayerStats GetPlayerStats(Guid playerId);
+
         [OperationContract]
-        double Subtract(double n1, double n2);
+        bool Login(Guid playerId, string password);
+
         [OperationContract]
-        double Multiply(double n1, double n2);
+        GameState PlayerMove(Guid playerId, Guid MatchId, Move move);
+
         [OperationContract]
-        double Divide(double n1, double n2);
+        List<GameDetails> GetGameList();
+
     }
+
+    public class PlayerStats { }
+    public class Move { }
+    public class GameState { }
+    public class GameDetails { }
 
     public class GameServer : IGameServer
     {
@@ -52,6 +61,26 @@ namespace GameServer
             Console.WriteLine("Received Divide({0},{1})", n1, n2);
             Console.WriteLine("Return: {0}", result);
             return result;
+        }
+
+        public bool Login(Guid playerId, string password)
+        {
+            throw new NotImplementedException();
+        }
+
+        public GameState PlayerMove(Guid playerId, Guid MatchId, Move move)
+        {
+            throw new NotImplementedException();
+        }
+
+        public PlayerStats GetPlayerStats(Guid playerId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<GameDetails> GetGameList()
+        {
+            throw new NotImplementedException();
         }
     }
 

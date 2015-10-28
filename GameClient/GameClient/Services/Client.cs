@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GameClient.GameServerService;
 
-namespace GameClient 
+namespace GameClient.Services 
 {
     class ClientHelper 
     {

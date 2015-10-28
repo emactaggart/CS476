@@ -1,4 +1,4 @@
-﻿namespace MatchingGame
+﻿namespace GameClient.Views
 {
     partial class Form1
     {
