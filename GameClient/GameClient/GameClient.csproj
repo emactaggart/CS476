@@ -80,35 +80,34 @@
     <Compile Include="Models\GameType.cs" />
     <Compile Include="Models\PlayerProfile.cs" />
     <Compile Include="Models\PlayerStats.cs" />
-    <Compile Include="Utilities\BasicDisposable.cs" />
-    <Compile Include="Utilities\BasicObserver.cs" />
-    <Compile Include="Utilities\BasicObservable.cs" />
-    <Compile Include="Views\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MainPage.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainPage.designer.cs">
-      <DependentUpon>MainPage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Registration.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Registration.designer.cs">
-      <DependentUpon>Registration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\GameServerService\Reference.cs">
+    <Compile Include="Service References\Server\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Services\Client.cs" />
-    <Compile Include="TicTacToeWin32.cs">
+    <Compile Include="Utilities\BasicDisposable.cs" />
+    <Compile Include="Utilities\BasicObserver.cs" />
+    <Compile Include="Utilities\BasicObservable.cs" />
+    <Compile Include="Views\SignupPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\MainPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\MainPage.designer.cs">
+      <DependentUpon>MainPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Views\RegistrationPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\RegistrationPage.designer.cs">
+      <DependentUpon>RegistrationPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SignupPage.Designer.cs">
+      <DependentUpon>SignupPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TicTacToeWin32.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
@@ -126,20 +125,20 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainPage.resx">
+    <EmbeddedResource Include="Views\MainPage.resx">
       <DependentUpon>MainPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Registration.resx">
-      <DependentUpon>Registration.cs</DependentUpon>
+    <EmbeddedResource Include="Views\RegistrationPage.resx">
+      <DependentUpon>RegistrationPage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TicTacToeWin32.resx">
+    <EmbeddedResource Include="Views\SignupPage.resx">
+      <DependentUpon>SignupPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\TicTacToeWin32.resx">
       <DependentUpon>TicTacToeWin32.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -147,21 +146,29 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\GameServerService\GameClient.GameServerService.GameDetails.datasource">
+    <None Include="Service References\Server\BaseService.wsdl" />
+    <None Include="Service References\Server\GameClient.Server.GameDetails.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\GameServerService\GameClient.GameServerService.GameState.datasource">
+    <None Include="Service References\Server\GameClient.Server.PlayerProfile.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\GameServerService\GameClient.GameServerService.PlayerStats.datasource">
+    <None Include="Service References\Server\GameClient.Server.PlayerStats.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\GameServerService\GameServer.wsdl" />
-    <None Include="Service References\GameServerService\item.wsdl" />
-    <None Include="Service References\GameServerService\item.xsd">
+    <None Include="Service References\Server\GameClient.Server.TicTacToeState.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Server\item.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\GameServerService\item1.xsd">
+    <None Include="Service References\Server\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Server\item2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Server\item3.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -172,25 +179,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\GameServerService\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\GameServerService\item.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\GameServerService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\GameServerService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\GameServerService\item2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\GameServerService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    <WCFMetadataStorage Include="Service References\Server\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
@@ -206,6 +195,21 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\TicTacToe\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Server\item.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Server\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Server\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Server\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameClient.Views;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TicTacToeWin32;
 
-namespace CS_476_Client
+namespace GameClient.Views 
 {
     public partial class MainPage : Form
     {
@@ -21,7 +22,7 @@ namespace CS_476_Client
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Signup F1 = new Signup();
+            SignupPage F1 = new SignupPage();
             F1.ShowDialog();
         }
 

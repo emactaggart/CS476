@@ -1,5 +1,4 @@
-﻿using GameClient.GameServerService;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,9 +10,9 @@ using System.Windows.Forms;
 
 namespace GameClient.Views 
 {
-    public partial class Signup : Form
+    public partial class SignupPage : Form
     {
-        public Signup()
+        public SignupPage()
         {
             InitializeComponent();
         }
@@ -22,7 +21,7 @@ namespace GameClient.Views
         {
             //Register
             this.Hide();
-            Registration R = new Registration();
+            RegistrationPage R = new RegistrationPage();
             R.ShowDialog();
         }
 
@@ -37,8 +36,8 @@ namespace GameClient.Views
         private void button1_Click(object sender, EventArgs e)
         {
             //login
-            GameServerClient client = new GameServerClient();
-            
+            Program.infoController.LogingGuest();
+
             this.Hide();
             MainPage M = new MainPage();
             M.ShowDialog();

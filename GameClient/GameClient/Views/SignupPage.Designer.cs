@@ -1,6 +1,6 @@
-﻿namespace GameClient.Views
+﻿namespace GameClient.Views 
 {
-    partial class Signup
+    partial class SignupPage
     {
         /// <summary>
         /// Required designer variable.
@@ -107,4 +107,3 @@
         private System.Windows.Forms.TextBox textBox2;
     }
 }
-

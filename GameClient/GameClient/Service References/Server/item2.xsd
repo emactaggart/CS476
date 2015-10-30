@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/GameServer.Data.Models.TicTacToe" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/GameServer.Data.Models.TicTacToe" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfPlayerMark">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PlayerMark" type="tns:PlayerMark" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPlayerMark" nillable="true" type="tns:ArrayOfPlayerMark" />
+  <xs:simpleType name="PlayerMark">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Empty" />
+      <xs:enumeration value="X" />
+      <xs:enumeration value="O" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="PlayerMark" nillable="true" type="tns:PlayerMark" />
+  <xs:simpleType name="MovePosition">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="TopLeft" />
+      <xs:enumeration value="TopCenter" />
+      <xs:enumeration value="TopRight" />
+      <xs:enumeration value="MiddleLeft" />
+      <xs:enumeration value="MiddleCenter" />
+      <xs:enumeration value="MiddleRight" />
+      <xs:enumeration value="BottomLeft" />
+      <xs:enumeration value="BottomCenter" />
+      <xs:enumeration value="BottomRight" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="MovePosition" nillable="true" type="tns:MovePosition" />
+</xs:schema>

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace GameClient.Models
 {
-    class TicTacToeMove
-    {
-        Guid gameId;
-        Guid playerId;
-        PlayerMark mark;
-        BoardSquare location;
-    }
+    //class TicTacToeMove
+    //{
+    //    Guid gameId;
+    //    Guid playerId;
+    //    PlayerMark mark;
+    //    BoardSquare location;
+    //}
 }

@@ -1,6 +1,6 @@
-﻿namespace CS_476_Client
+﻿namespace GameClient.Views
 {
-    partial class Registration
+    partial class RegistrationPage
     {
         /// <summary>
         /// Required designer variable.

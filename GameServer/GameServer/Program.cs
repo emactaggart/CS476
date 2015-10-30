@@ -4,99 +4,23 @@ using System.Linq;
 using System.Text;
 using System.ServiceModel;
 using System.ServiceModel.Description;
+using Gameserver.Data.Models;
+using GameServer.Services;
 
-namespace GameServer 
+namespace GameServer
 {
-    [ServiceContract(Namespace = "http://Microsoft.ServiceModel.Samples")]
-    public interface IGameServer
-    {
-        [OperationContract]
-        PlayerStats GetPlayerStats(Guid playerId);
-
-        [OperationContract]
-        bool Login(Guid playerId, string password);
-
-        [OperationContract]
-        GameState PlayerMove(Guid playerId, Guid MatchId, Move move);
-
-        [OperationContract]
-        double Divide(double n1, double n2);
-
-        [OperationContract]
-        List<GameDetails> GetGameList();
-    }
-
-    public class PlayerStats { }
-    public class Move { }
-    public class GameState { }
-    public class GameDetails { }
-
-    public class GameServer : IGameServer
-    {
-        public double Add(double n1, double n2)
-        {
-            double result = n1 + n2;
-            Console.WriteLine("Received Add({0},{1})", n1, n2);
-            Console.WriteLine("Return: {0}", result);
-            return result;
-        }
-
-        public double Subtract(double n1, double n2)
-        {
-            double result = n1 - n2;
-            Console.WriteLine("Received Subtract({0},{1})", n1, n2);
-            Console.WriteLine("Return: {0}", result);
-            return result;
-        }
-
-        public double Multiply(double n1, double n2)
-        {
-            double result = n1 * n2;
-            Console.WriteLine("Received Multiply({0},{1})", n1, n2);
-            Console.WriteLine("Return: {0}", result);
-            return result;
-        }
-
-        public double Divide(double n1, double n2)
-        {
-            double result = n1 / n2;
-            Console.WriteLine("Received Divide({0},{1})", n1, n2);
-            Console.WriteLine("Return: {0}", result);
-            return result;
-        }
-
-        public bool Login(Guid playerId, string password)
-        {
-            throw new NotImplementedException();
-        }
-
-        public GameState PlayerMove(Guid playerId, Guid MatchId, Move move)
-        {
-            throw new NotImplementedException();
-        }
-
-        public PlayerStats GetPlayerStats(Guid playerId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<GameDetails> GetGameList()
-        {
-            throw new NotImplementedException();
-        }
-    }
-
     class Program
     {
         static void Main(string[] args)
         {
-            Uri baseAddress = new Uri("http://localhost:8000/GameServer/");
-
-            ServiceHost selfHost = new ServiceHost(typeof(GameServer), baseAddress);
+            Uri baseAddress = new Uri("http://localhost:8000/");
+            ServiceHost selfHost = new ServiceHost(typeof(BaseService), baseAddress);
 
             try
             {
-                selfHost.AddServiceEndpoint(typeof(IGameServer), new WSHttpBinding(), "Service");
+                selfHost.AddServiceEndpoint(typeof(IInformationService), new WSHttpBinding(), "Info");
+                selfHost.AddServiceEndpoint(typeof(IGameService), new WSHttpBinding(), "Game");
+
 
                 ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
                 smb.HttpGetEnabled = true;

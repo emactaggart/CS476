@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using GameClient.Views;
-using GameClient.Models;
 using GameClient.Controllers;
-using GameClient.GameServerService;
+using GameClient.Server;
 using GameClient.Utilities;
+using GameClient.Views;
 
 namespace GameClient 
 {
@@ -19,12 +18,13 @@ namespace GameClient
         static Program()
         {
             var profile = new PlayerProfile();
-            var stats = new BasicObservable<PlayerStats>(new PlayerStats());
-            var gameList = new BasicObservable<List<GameDetails>>(new List<GameDetails>());
-            var server = new GameServerClient();    //check for connection?
-            var state = new BasicObservable<GameState>();
-            infoController = new InformationController(server, profile, stats, gameList);
-            gameController = new GameController(server, state);
+            var stats = new BasicObservable<PlayerStats>(new PlayerStats()); //TODO probably don't need observer here
+            var gameList = new BasicObservable<List<GameDetails>>(new List<GameDetails>()); //TODO: probably don't need observer here
+            var gameService = new GameServiceClient();    //check for connection?
+            var infoService = new InformationServiceClient();
+            var state = new BasicObservable<TicTacToeState>(new TicTacToeState());
+            infoController = new InformationController(infoService, profile, stats, gameList);
+            gameController = new GameController(gameService, state);
         }
 
         [STAThread]
@@ -32,7 +32,7 @@ namespace GameClient
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CS_476_Client.Signup());
+            Application.Run(new SignupPage());
         }
     }
 }

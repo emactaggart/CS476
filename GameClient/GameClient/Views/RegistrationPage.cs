@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CS_476_Client
+namespace GameClient.Views 
 {
-    public partial class Registration : Form
+    public partial class RegistrationPage : Form
     {
-        public Registration()
+        public RegistrationPage()
         {
             InitializeComponent();
         }
@@ -32,7 +32,7 @@ namespace CS_476_Client
         private void button2_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Signup F = new Signup();
+            SignupPage F = new SignupPage();
             F.ShowDialog();
         }
     }

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GameClient.Models
+namespace Gameserver.Data.Models
 {
-    //enum GameType
-    //{
-    //    TicTacToe,
-    //}
+    enum GameType
+    {
+        TicTacToe,
+    }
 }

@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace GameClient.Models
 {
-    class TicTacToeResults
-    {
-        Guid gameId;
-        Guid player1Id;
-        Guid player2Id;
-        Guid winnerId;
-        Guid loserId;
-        GameType type;
-    }
+    //class TicTacToeResults
+    //{
+    //    Guid gameId;
+    //    Guid player1Id;
+    //    Guid player2Id;
+    //    Guid winnerId;
+    //    Guid loserId;
+    //    GameType type;
+    //}
 }

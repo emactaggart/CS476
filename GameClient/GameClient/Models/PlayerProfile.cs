@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace GameClient.Models
 {
-    class PlayerProfile
-    {
-        public Guid id;
-        public string username;
-    }
+    //class PlayerProfile
+    //{
+    //    public Guid id;
+    //    public string username;
+    //}
 }
