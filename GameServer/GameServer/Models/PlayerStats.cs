@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gameserver.Data.Models
+namespace GameServer.Models
 {
     [DataContract]
     class PlayerStats
@@ -21,6 +21,6 @@ namespace Gameserver.Data.Models
         [DataMember]
         public int totalLosses;
         [DataMember]
-        public List<TicTacToeResults> gameHistory;
+        public List<MatchState> gameHistory;
     } 
 }

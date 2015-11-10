@@ -3,21 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GameServer.Data.Models.TicTacToe;
 using System.Runtime.Serialization;
+using GameServer.Models.TicTacToe;
 
-namespace Gameserver.Data.Models
+namespace GameServer.Models
 {
     [DataContract]
-    class TicTacToeMove
+    class TicTacToeState
     {
         [DataMember]
-        public Guid gameId;
+        public List<PlayerMark> board;
         [DataMember]
-        public Guid playerId;
+        public Guid firstPlayer;
         [DataMember]
-        public PlayerMark mark;
-        [DataMember]
-        public MovePosition movePosition;
+        public Guid secondPlayer;
     }
 }

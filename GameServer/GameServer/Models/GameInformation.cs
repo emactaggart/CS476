@@ -5,14 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-namespace Gameserver.Data.Models
+namespace GameServer.Models
 {
     [DataContract]
-    class PlayerProfile
+    class GameInformation
     {
         [DataMember]
-        public Guid id;
+        public int id;
         [DataMember]
-        public string username;
+        public string gameType;
+        [DataMember]
+        public int numberOfPlayers;
+        [DataMember]
+        public string description;
     }
 }

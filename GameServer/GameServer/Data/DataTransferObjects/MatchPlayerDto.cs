@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gameserver.Data.Models
+namespace GameServer.Data.DataTransferObjects
 {
-    enum GameType
+    class MatchPlayerDto
     {
-        TicTacToe,
+        public Guid matchId;
+        public Guid playerId;
     }
 }

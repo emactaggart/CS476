@@ -1,4 +1,5 @@
-﻿using Gameserver.Data.Models;
+﻿using GameServer.Models;
+using GameServer.Models.TicTacToe;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,15 @@ namespace GameServer.Services
     interface IGameService
     {
         [OperationContract]
-        TicTacToeState JoinGame(GameType type, Guid playerId);
+        MatchState JoinGame(GameType type, Guid playerId);
 
         [OperationContract]
-        void Quit(Guid gameId, Guid playerId);
+        void Quit(Guid matchId, Guid playerId);
 
         [OperationContract]
-        TicTacToeState PlayerMove(Guid gameId, Guid playerId, TicTacToeMove move);
+        MatchState PlayerMove(Guid matchId, Guid playerId, MovePosition move);
+
+        [OperationContract]
+        MatchState GetMatchState(Guid matchId);
     }
 }

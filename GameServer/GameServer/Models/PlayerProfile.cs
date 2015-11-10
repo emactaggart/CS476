@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using GameServer.Data.Models.TicTacToe;
 using System.Runtime.Serialization;
 
-namespace Gameserver.Data.Models
+namespace GameServer.Models
 {
     [DataContract]
-    class TicTacToeState
+    class PlayerProfile
     {
         [DataMember]
-        public List<PlayerMark> board;
+        public Guid id;
+        [DataMember]
+        public string username;
     }
 }

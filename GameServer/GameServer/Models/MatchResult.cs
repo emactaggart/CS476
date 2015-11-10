@@ -1,24 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
-using System.Runtime.Serialization;
 
-namespace Gameserver.Data.Models
+namespace GameServer.Models
 {
     [DataContract]
-    class GameDetails
+    class MatchResult
     {
         [DataMember]
         public Guid id;
         [DataMember]
-        public string type;
+        public Guid winnerId;
         [DataMember]
-        public int playerMin;
+        public DateTime gameStartTime;
         [DataMember]
-        public int playerMax;
+        public DateTime gameEndTime;
         [DataMember]
-        public string description;
+        public GameType gameType;
+        [DataMember]
+        public List<Guid> players;
     }
 }

@@ -3,52 +3,58 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Gameserver.Data.Models;
+using GameServer.Models;
 using System.Runtime.Serialization;
 using System.ServiceModel;
+using GameServer.Models.TicTacToe;
 
 namespace GameServer.Services
 {
     class BaseService : IInformationService, IGameService
     {
-        public List<GameDetails> GetGameList()
+        public List<GameInformation> GetGameList()
         {
-            throw new NotImplementedException();
+            return Program.infoController.GetGameList();
+        }
+
+        public MatchState GetMatchState(Guid matchId)
+        {
+            return Program.gameController.GetMatchState(matchId);
         }
 
         public PlayerStats GetPlayerStats(Guid playerId)
         {
-            throw new NotImplementedException();
+            return Program.infoController.GetPlayerStats(playerId);
         }
 
-        public TicTacToeState JoinGame(GameType type, Guid playerId)
+        public MatchState JoinGame(GameType type, Guid playerId)
         {
-            throw new NotImplementedException();
+            return Program.gameController.JoinGame(type, playerId);
         }
 
-        public bool LoginGuest()
+        public PlayerProfile LoginGuest()
         {
-            throw new NotImplementedException();
+            return Program.infoController.LoginGuest();
         }
 
         public PlayerProfile LoginPlayer(string username, string password)
         {
-            throw new NotImplementedException();
+            return Program.infoController.LoginPlayer(username, password);
         }
 
         public void LogoutPlayer(Guid playerId)
         {
-            throw new NotImplementedException();
+            Program.infoController.LogoutPlayer(playerId);
         }
 
-        public TicTacToeState PlayerMove(Guid gameId, Guid playerId, TicTacToeMove move)
+        public MatchState PlayerMove(Guid matchId, Guid playerId, MovePosition move)
         {
-            throw new NotImplementedException();
+            return Program.gameController.PlayerMove(matchId, playerId, move);
         }
 
-        public void Quit(Guid gameId, Guid playerId)
+        public void Quit(Guid matchId, Guid playerId)
         {
-            throw new NotImplementedException();
+            Program.gameController.Quit(matchId, playerId);
         }
     }
 }

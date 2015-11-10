@@ -1,4 +1,4 @@
-﻿using Gameserver.Data.Models;
+﻿using GameServer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,13 +15,13 @@ namespace GameServer.Services
         PlayerStats GetPlayerStats(Guid playerId);
 
         [OperationContract]
-        List<GameDetails> GetGameList();
+        List<GameInformation> GetGameList();
 
         [OperationContract]
         PlayerProfile LoginPlayer(string username, string password);
 
         [OperationContract]
-        bool LoginGuest();
+        PlayerProfile LoginGuest();
 
         [OperationContract]
         void LogoutPlayer(Guid playerId);
