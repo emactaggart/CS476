@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GameClient.Server;
 using GameClient.Utilities;
+using System.ServiceModel;
 
 namespace GameClient.Controllers
 {
@@ -28,35 +29,71 @@ namespace GameClient.Controllers
 
         public void GetPlayerStats(Guid playerId)
         {
-            PlayerStats stats = _service.GetPlayerStats(playerId);
-            _stats.Update(stats);
+            try
+            {
+                PlayerStats stats = _service.GetPlayerStats(playerId);
+                _stats.Update(stats);
+            }
+            catch (FaultException<GameServerFault> fe) { }
+            catch (CommunicationException ce) { }
+            catch (TimeoutException te) { }
         }
 
         public void GetGameList()
         {
-            List<GameInformation> gameList = _service.GetGameList().ToList();
-            _gameList.Update(gameList);
+            try
+            {
+                List<GameInformation> gameList = _service.GetGameList().ToList();
+                _gameList.Update(gameList);
+            }
+            catch (FaultException<GameServerFault> fe) { }
+            catch (CommunicationException ce) { }
+            catch (TimeoutException te) { }
         }
 
         public void CreateAccount(string username, string password)
         {
-
+            try
+            {
+                _service.CreatePlayerAccount(username, password);
+            }
+            catch (FaultException<GameServerFault> fe) { }
+            catch (CommunicationException ce) { }
+            catch (TimeoutException te) { }
         }
 
         public void LogingPlayer(string username, string password)
         {
-            _profile = _service.LoginPlayer(username, password);
+            try
+            {
+                _profile = _service.LoginPlayer(username, password);
+            }
+            catch (FaultException<GameServerFault> fe) { }
+            catch (CommunicationException ce) { }
+            catch (TimeoutException te) { }
         }
 
         public void LogingGuest()
         {
-            _profile = _service.LoginGuest();
+            try
+            {
+                _profile = _service.LoginGuest();
+            }
+            catch (FaultException<GameServerFault> fe) { }
+            catch (CommunicationException ce) { }
+            catch (TimeoutException te) { }
         }
 
         public void LogoutPlayer(Guid playerId)
         {
-            _service.LogoutPlayer(playerId);
-            _profile = new PlayerProfile { id = Guid.Parse("00000000-0000-0000-0000-000000000000"), username = "null" };
+            try
+            {
+                _service.LogoutPlayer(playerId);
+                _profile = new PlayerProfile { id = Guid.Parse("00000000-0000-0000-0000-000000000000"), username = "null" };
+            }
+            catch (FaultException<GameServerFault> fe) { }
+            catch (CommunicationException ce) { }
+            catch (TimeoutException te) { }
         }
     }
 }

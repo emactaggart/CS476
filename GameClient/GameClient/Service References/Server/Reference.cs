@@ -775,6 +775,13 @@ namespace GameClient.Server {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInformationService/GetGameList", ReplyAction="http://tempuri.org/IInformationService/GetGameListResponse")]
         System.Threading.Tasks.Task<GameClient.Server.GameInformation[]> GetGameListAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInformationService/CreatePlayerAccount", ReplyAction="http://tempuri.org/IInformationService/CreatePlayerAccountResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.GameServerFault), Action="http://tempuri.org/IInformationService/CreatePlayerAccountGameServerFaultFault", Name="GameServerFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
+        void CreatePlayerAccount(string username, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInformationService/CreatePlayerAccount", ReplyAction="http://tempuri.org/IInformationService/CreatePlayerAccountResponse")]
+        System.Threading.Tasks.Task CreatePlayerAccountAsync(string username, string password);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInformationService/LoginPlayer", ReplyAction="http://tempuri.org/IInformationService/LoginPlayerResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.GameServerFault), Action="http://tempuri.org/IInformationService/LoginPlayerGameServerFaultFault", Name="GameServerFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
         GameClient.Server.PlayerProfile LoginPlayer(string username, string password);
@@ -838,6 +845,14 @@ namespace GameClient.Server {
         
         public System.Threading.Tasks.Task<GameClient.Server.GameInformation[]> GetGameListAsync() {
             return base.Channel.GetGameListAsync();
+        }
+        
+        public void CreatePlayerAccount(string username, string password) {
+            base.Channel.CreatePlayerAccount(username, password);
+        }
+        
+        public System.Threading.Tasks.Task CreatePlayerAccountAsync(string username, string password) {
+            return base.Channel.CreatePlayerAccountAsync(username, password);
         }
         
         public GameClient.Server.PlayerProfile LoginPlayer(string username, string password) {
