@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace GameServer.Models
 {
     [DataContract]
-    class PlayerStats
+    public class PlayerStats
     {
         [DataMember]
         public Guid playerId;
@@ -21,6 +21,6 @@ namespace GameServer.Models
         [DataMember]
         public int totalLosses;
         [DataMember]
-        public List<MatchState> gameHistory;
+        public List<MatchResult> gameHistory;
     } 
 }

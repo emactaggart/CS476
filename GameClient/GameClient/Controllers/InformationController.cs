@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GameClient.Server;
-using GameClient.Models;
 using GameClient.Utilities;
 
 namespace GameClient.Controllers
@@ -14,9 +13,12 @@ namespace GameClient.Controllers
         private InformationServiceClient _service;
         private BasicObservable<PlayerStats> _stats;
         private PlayerProfile _profile;
-        private BasicObservable<List<GameDetails>> _gameList;
+        private BasicObservable<List<GameInformation>> _gameList;
 
-        public InformationController(InformationServiceClient service, PlayerProfile profile, BasicObservable<PlayerStats> stats, BasicObservable<List<GameDetails>> gameList)
+        public InformationController(InformationServiceClient service, 
+                PlayerProfile profile, 
+                BasicObservable<PlayerStats> stats, 
+                BasicObservable<List<GameInformation>> gameList)
         {
             _service = service;
             _stats = stats;
@@ -32,8 +34,13 @@ namespace GameClient.Controllers
 
         public void GetGameList()
         {
-            List<GameDetails> gameList = _service.GetGameList().ToList();
+            List<GameInformation> gameList = _service.GetGameList().ToList();
             _gameList.Update(gameList);
+        }
+
+        public void CreateAccount(string username, string password)
+        {
+
         }
 
         public void LogingPlayer(string username, string password)
@@ -43,8 +50,7 @@ namespace GameClient.Controllers
 
         public void LogingGuest()
         {
-            _service.LoginGuest();
-            _profile = new PlayerProfile { id = Guid.Parse("11111111-1111-1111-1111-111111111111"), username = "Guest" };
+            _profile = _service.LoginGuest();
         }
 
         public void LogoutPlayer(Guid playerId)

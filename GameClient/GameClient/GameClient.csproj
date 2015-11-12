@@ -72,14 +72,6 @@
   <ItemGroup>
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\InformationController.cs" />
-    <Compile Include="Controllers\TicTacToe.cs" />
-    <Compile Include="Models\GameDetails.cs" />
-    <Compile Include="Models\TicTacToeMove.cs" />
-    <Compile Include="Models\TicTacToeResults.cs" />
-    <Compile Include="Models\GameState.cs" />
-    <Compile Include="Models\GameType.cs" />
-    <Compile Include="Models\PlayerProfile.cs" />
-    <Compile Include="Models\PlayerStats.cs" />
     <Compile Include="Service References\Server\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -147,16 +139,16 @@
     </None>
     <AppDesigner Include="Properties\" />
     <None Include="Service References\Server\BaseService.wsdl" />
-    <None Include="Service References\Server\GameClient.Server.GameDetails.datasource">
+    <None Include="Service References\Server\GameClient.Server.GameInformation.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Server\GameClient.Server.MatchState.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\Server\GameClient.Server.PlayerProfile.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\Server\GameClient.Server.PlayerStats.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\Server\GameClient.Server.TicTacToeState.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\Server\item.xsd">
@@ -194,7 +186,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\TicTacToe\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\Server\item.disco" />
@@ -206,6 +198,12 @@
     <None Include="Service References\Server\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\Server\item4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Server\item41.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\Server\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>

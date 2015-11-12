@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace GameServer.Models
 {
     [DataContract]
-    class MatchResult
+    public class MatchResult
     {
         [DataMember]
         public Guid id;

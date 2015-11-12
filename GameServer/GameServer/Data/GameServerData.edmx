@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="GameServerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Game">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="number_of_players" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Match">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="winner_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="game_start_time" Type="datetime" Nullable="false" />
+          <Property Name="game_end_time" Type="datetime" Nullable="false" />
+          <Property Name="game_type" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MatchPlayer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="match_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="player_id" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Match_GameInformation">
+          <End Role="Game" Type="Self.Game" Multiplicity="1" />
+          <End Role="Match" Type="Self.Match" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Match">
+              <PropertyRef Name="game_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MatchPlayer_Match">
+          <End Role="Match" Type="Self.Match" Multiplicity="1" />
+          <End Role="MatchPlayer" Type="Self.MatchPlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Match">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MatchPlayer">
+              <PropertyRef Name="match_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MatchPlayer_Player">
+          <End Role="Player" Type="Self.Player" Multiplicity="1" />
+          <End Role="MatchPlayer" Type="Self.MatchPlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MatchPlayer">
+              <PropertyRef Name="player_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GameServerModelStoreContainer">
+          <EntitySet Name="Game" EntityType="Self.Game" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Match" EntityType="Self.Match" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MatchPlayer" EntityType="Self.MatchPlayer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Player" EntityType="Self.Player" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Match_GameInformation" Association="Self.FK_Match_GameInformation">
+            <End Role="Game" EntitySet="Game" />
+            <End Role="Match" EntitySet="Match" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MatchPlayer_Match" Association="Self.FK_MatchPlayer_Match">
+            <End Role="Match" EntitySet="Match" />
+            <End Role="MatchPlayer" EntitySet="MatchPlayer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MatchPlayer_Player" Association="Self.FK_MatchPlayer_Player">
+            <End Role="Player" EntitySet="Player" />
+            <End Role="MatchPlayer" EntitySet="MatchPlayer" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="GameServerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Game">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="number_of_players" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Matches" Relationship="Self.FK_Match_GameInformation" FromRole="Game" ToRole="Match" />
+        </EntityType>
+        <EntityType Name="Match">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="winner_id" Type="Guid" Nullable="false" />
+          <Property Name="game_start_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="game_end_time" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="game_type" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Game" Relationship="Self.FK_Match_GameInformation" FromRole="Match" ToRole="Game" />
+          <NavigationProperty Name="MatchPlayers" Relationship="Self.FK_MatchPlayer_Match" FromRole="Match" ToRole="MatchPlayer" />
+        </EntityType>
+        <EntityType Name="MatchPlayer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="match_id" Type="Guid" Nullable="false" />
+          <Property Name="player_id" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Match" Relationship="Self.FK_MatchPlayer_Match" FromRole="MatchPlayer" ToRole="Match" />
+          <NavigationProperty Name="Player" Relationship="Self.FK_MatchPlayer_Player" FromRole="MatchPlayer" ToRole="Player" />
+        </EntityType>
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="MatchPlayers" Relationship="Self.FK_MatchPlayer_Player" FromRole="Player" ToRole="MatchPlayer" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Match_GameInformation">
+          <End Role="Game" Type="Self.Game" Multiplicity="1" />
+          <End Role="Match" Type="Self.Match" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Game">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Match">
+              <PropertyRef Name="game_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MatchPlayer_Match">
+          <End Role="Match" Type="Self.Match" Multiplicity="1" />
+          <End Role="MatchPlayer" Type="Self.MatchPlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Match">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MatchPlayer">
+              <PropertyRef Name="match_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MatchPlayer_Player">
+          <End Role="Player" Type="Self.Player" Multiplicity="1" />
+          <End Role="MatchPlayer" Type="Self.MatchPlayer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="MatchPlayer">
+              <PropertyRef Name="player_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="GameServerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Games" EntityType="Self.Game" />
+          <EntitySet Name="Matches" EntityType="Self.Match" />
+          <EntitySet Name="MatchPlayers" EntityType="Self.MatchPlayer" />
+          <EntitySet Name="Players" EntityType="Self.Player" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK_Match_GameInformation" Association="Self.FK_Match_GameInformation">
+            <End Role="Game" EntitySet="Games" />
+            <End Role="Match" EntitySet="Matches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MatchPlayer_Match" Association="Self.FK_MatchPlayer_Match">
+            <End Role="Match" EntitySet="Matches" />
+            <End Role="MatchPlayer" EntitySet="MatchPlayers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MatchPlayer_Player" Association="Self.FK_MatchPlayer_Player">
+            <End Role="Player" EntitySet="Players" />
+            <End Role="MatchPlayer" EntitySet="MatchPlayers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="GameServerModelStoreContainer" CdmEntityContainer="GameServerEntities">
+          <EntitySetMapping Name="Games">
+            <EntityTypeMapping TypeName="GameServerModel.Game">
+              <MappingFragment StoreEntitySet="Game">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="number_of_players" ColumnName="number_of_players" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Matches">
+            <EntityTypeMapping TypeName="GameServerModel.Match">
+              <MappingFragment StoreEntitySet="Match">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="winner_id" ColumnName="winner_id" />
+                <ScalarProperty Name="game_start_time" ColumnName="game_start_time" />
+                <ScalarProperty Name="game_end_time" ColumnName="game_end_time" />
+                <ScalarProperty Name="game_type" ColumnName="game_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MatchPlayers">
+            <EntityTypeMapping TypeName="GameServerModel.MatchPlayer">
+              <MappingFragment StoreEntitySet="MatchPlayer">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="match_id" ColumnName="match_id" />
+                <ScalarProperty Name="player_id" ColumnName="player_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Players">
+            <EntityTypeMapping TypeName="GameServerModel.Player">
+              <MappingFragment StoreEntitySet="Player">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="GameServerModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

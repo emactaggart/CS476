@@ -8,12 +8,10 @@ using System.Runtime.Serialization;
 namespace GameServer.Models
 {
     [DataContract]
-    class GameInformation
+    public class GameInformation
     {
         [DataMember]
-        public int id;
-        [DataMember]
-        public string gameType;
+        public GameType gameType;
         [DataMember]
         public int numberOfPlayers;
         [DataMember]

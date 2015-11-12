@@ -1,5 +1,4 @@
-﻿using GameServer.Data.DataTransferObjects;
-using GameServer.Models;
+﻿using GameServer.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,74 +9,63 @@ namespace GameServer.Data
 {
     class ModelConverter
     {
-        public static class FromDto
+        public static class FromRow
         {
-            public static List<MatchResult> GetMatchResultsFromDtos(List<MatchDto> matchDtos, List<MatchPlayerDto> playerDtos)
+            public static List<MatchResult> GetMatchResultsFromMatches(List<Match> matches, List<MatchPlayer> matchPlayers)
             {
-                var matchList = matchDtos.Select(x => new MatchResult
+                var matchResults = matches.Select(x => new MatchResult
                 {
                     id = x.id,
-                    gameType = (GameType)x.gameType,
-                    winnerId = x.winnerId,
-                    gameStartTime = x.gameStartTime,
-                    gameEndTime = x.gameEndTime,
-                    players = new List<Guid>(),
+                    gameType = (GameType)x.game_type,
+                    winnerId = x.winner_id,
+                    gameStartTime = x.game_start_time,
+                    gameEndTime = x.game_end_time,
+                    players = matchPlayers
+                        .FindAll(y => y.match_id == x.id)
+                        .Select(y => y.player_id)
+                        .ToList(),
                 }).ToList();
 
-                matchList.ForEach(
-                    match => match.players = playerDtos
-                        .FindAll(y => y.matchId == match.id)
-                        .Select(y => y.playerId).ToList());
-
-                return matchList;
+                return matchResults;
             }
 
-            public static PlayerProfile GetPlayerProfileFromDto(PlayerDto playerDto)
+            public static PlayerProfile GetPlayerProfileFromPlayer(Player player)
             {
                 return new PlayerProfile
                 {
-                    id = playerDto.id,
-                    username = playerDto.username,
+                    id = player.id,
+                    username = player.username,
                 };
             }
 
-            public static GameInformation GetGameInformationFromDto(GameInformationDto dto)
+            public static GameInformation GetGameInformationFromGame(Game game)
             {
                 return new GameInformation
                 {
-                    id = dto.id,
-                    gameType = dto.gameType,
-                    numberOfPlayers = dto.numberOfPlayers,
-                    description = dto.description
+                    gameType = (GameType)game.id,
+                    numberOfPlayers = game.number_of_players,
+                    description = game.description
                 };
             }
         }
 
-        public static class ToDto
+        public static class ToRow
         {
-            public static MatchDto GetMatchDtoFromMatchState(MatchState matchState)
+            public static Match GetMatchFromMatchState(MatchState matchState)
             {
-                return new MatchDto
+                return new Match 
                 {
                     id = matchState.id,
-                    gameType = (int)matchState.gameType,
-                    winnerId = matchState.winnerId,
-                    gameStartTime = matchState.gameStartTime,
-                    gameEndTime = matchState.gameEndTime,
+                    game_type = (int)matchState.gameType,
+                    winner_id = matchState.winnerId,
+                    game_start_time = matchState.gameStartTime,
+                    game_end_time = matchState.gameEndTime,
                 };
             }
 
-            public static List<MatchPlayerDto> GetMatchPlayerListDtoFromMatchState(MatchState state)
+            public static Player GetPlayerFromPlayerProfile(PlayerProfile profile, string password)
             {
-                var list = state.players
-                    .Select(x => new MatchPlayerDto { matchId = state.id, playerId = x })
-                    .ToList();
-                return list;
-            }
-
-            public static PlayerDto GetPlayerDtoFromPlayerProfile(PlayerProfile profile, string password)
-            {
-                return new PlayerDto
+                return new Player 
                 {
                     id = profile.id,
                     username = profile.username,

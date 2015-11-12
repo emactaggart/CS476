@@ -1,5 +1,8 @@
-﻿using GameServer.Models;
+﻿using GameServer.Data;
+using GameServer.GameLogic;
+using GameServer.Models;
 using GameServer.Models.TicTacToe;
+using GameServer.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +11,15 @@ using System.Threading.Tasks;
 
 namespace GameServer.Controllers
 {
-    class GameController        //TODO: add exceptions for failures
+    public class GameController : IGameService
     {
+        private DataController _dataController;
+
+        public GameController(DataController dataController)
+        {
+            _dataController = dataController;
+        }
+
         public MatchState JoinGame(GameType matchType, Guid playerId)
         {
             var gameList = Program.onlineMatchList
@@ -19,24 +29,7 @@ namespace GameServer.Controllers
 
             if (!gameList.Any())
             {
-                matchState = new MatchState         //TODO: encapslate into factory
-                {
-                    id = Guid.NewGuid(),
-                    gameType = matchType,
-                    operationState = GameOperationState.WaitingForPlayers,
-                    gameStartTime = DateTime.Now,
-                    players = new List<Guid>
-                    {
-                        playerId,
-                    },
-                    inGameState = new TicTacToeState        //TODO: encapsulate into factory
-                    {
-                        firstPlayer = playerId,
-                        secondPlayer = Guid.Empty,
-                        board = new List<PlayerMark>(),     //TODO: encapsulate into factory
-                    },
-
-                };
+                matchState = MatchFactory.CreateNewMatch(matchType, playerId);
                 Program.onlineMatchList.Add(matchState);
             }
             else
@@ -53,32 +46,36 @@ namespace GameServer.Controllers
         public void Quit(Guid matchId, Guid playerId)
         {
             var match = Program.onlineMatchList.Find(x => x.id == matchId);
-
-            //set winner to player who didn't leave
+            if (!match.players.Any(x => x == playerId))
+            {
+                throw new Exception("Invalid request, player is not in specified game.");
+            }
             match.winnerId = match.players.Find(x => x != playerId);
-            //set gamestate to completed 
             match.operationState = GameOperationState.Completed;
-            //set match game length
             match.gameEndTime = DateTime.Now;
-
-            //store match information in the database
-            
-            //eventually remove from game list
+            _dataController.StoreMatch(match);
         }
 
         public MatchState PlayerMove(Guid matchId, Guid playerId, MovePosition move)
         {
             var match = Program.onlineMatchList.Find(x => x.id == matchId);
             MatchState matchState = null;
-            if (match.players.Contains(playerId))
+
+            if (match.operationState == GameOperationState.WaitingForPlayers)
             {
-                //verify player is playing in game
-                //calculate new gamestate by sending move and state to game logic
-            } else
-            {
-                //otherwise throw error that player is not in game or incorrect match Id
+                throw new Exception("Invalid request, waiting for another player.");
             }
-            //return new game state
+            if (match.operationState == GameOperationState.Completed)
+            {
+                throw new Exception("Invalid request, game is finished.");
+            }
+
+            if (!match.players.Contains(playerId))
+            {
+                throw new Exception("Invalid request, player is not in specified game.");
+            } 
+            matchState = TicTacToeLogic.CalculateNextState(match, playerId, move);
+
             return matchState;
         }
 

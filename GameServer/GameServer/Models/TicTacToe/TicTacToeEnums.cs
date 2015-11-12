@@ -23,9 +23,9 @@ namespace GameServer.Models.TicTacToe
         BottomLeft, BottomCenter, BottomRight
     }
 
-    public class Player
+    public enum PlayerTurn
     {
-        public string name;
-        public PlayerMark mark;
+        First,
+        Second,
     }
 }

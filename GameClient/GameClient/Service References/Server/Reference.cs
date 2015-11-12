@@ -15,7 +15,7 @@ namespace GameClient.Server {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PlayerStats", Namespace="http://schemas.datacontract.org/2004/07/Gameserver.Data.Models")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PlayerStats", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Models")]
     [System.SerializableAttribute()]
     public partial class PlayerStats : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -23,7 +23,7 @@ namespace GameClient.Server {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private GameClient.Server.TicTacToeResults[] gameHistoryField;
+        private GameClient.Server.MatchResult[] gameHistoryField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Guid playerIdField;
@@ -51,7 +51,7 @@ namespace GameClient.Server {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public GameClient.Server.TicTacToeResults[] gameHistory {
+        public GameClient.Server.MatchResult[] gameHistory {
             get {
                 return this.gameHistoryField;
             }
@@ -140,27 +140,27 @@ namespace GameClient.Server {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TicTacToeResults", Namespace="http://schemas.datacontract.org/2004/07/Gameserver.Data.Models")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MatchResult", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Models")]
     [System.SerializableAttribute()]
-    public partial class TicTacToeResults : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class MatchResult : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Guid gameIdField;
+        private System.DateTime gameEndTimeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Guid loserIdField;
+        private System.DateTime gameStartTimeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Guid player1IdField;
+        private GameClient.Server.GameType gameTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Guid player2IdField;
+        private System.Guid idField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private GameClient.Server.GameType typeField;
+        private System.Guid[] playersField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Guid winnerIdField;
@@ -176,66 +176,66 @@ namespace GameClient.Server {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Guid gameId {
+        public System.DateTime gameEndTime {
             get {
-                return this.gameIdField;
+                return this.gameEndTimeField;
             }
             set {
-                if ((this.gameIdField.Equals(value) != true)) {
-                    this.gameIdField = value;
-                    this.RaisePropertyChanged("gameId");
+                if ((this.gameEndTimeField.Equals(value) != true)) {
+                    this.gameEndTimeField = value;
+                    this.RaisePropertyChanged("gameEndTime");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Guid loserId {
+        public System.DateTime gameStartTime {
             get {
-                return this.loserIdField;
+                return this.gameStartTimeField;
             }
             set {
-                if ((this.loserIdField.Equals(value) != true)) {
-                    this.loserIdField = value;
-                    this.RaisePropertyChanged("loserId");
+                if ((this.gameStartTimeField.Equals(value) != true)) {
+                    this.gameStartTimeField = value;
+                    this.RaisePropertyChanged("gameStartTime");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Guid player1Id {
+        public GameClient.Server.GameType gameType {
             get {
-                return this.player1IdField;
+                return this.gameTypeField;
             }
             set {
-                if ((this.player1IdField.Equals(value) != true)) {
-                    this.player1IdField = value;
-                    this.RaisePropertyChanged("player1Id");
+                if ((this.gameTypeField.Equals(value) != true)) {
+                    this.gameTypeField = value;
+                    this.RaisePropertyChanged("gameType");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Guid player2Id {
+        public System.Guid id {
             get {
-                return this.player2IdField;
+                return this.idField;
             }
             set {
-                if ((this.player2IdField.Equals(value) != true)) {
-                    this.player2IdField = value;
-                    this.RaisePropertyChanged("player2Id");
+                if ((this.idField.Equals(value) != true)) {
+                    this.idField = value;
+                    this.RaisePropertyChanged("id");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public GameClient.Server.GameType type {
+        public System.Guid[] players {
             get {
-                return this.typeField;
+                return this.playersField;
             }
             set {
-                if ((this.typeField.Equals(value) != true)) {
-                    this.typeField = value;
-                    this.RaisePropertyChanged("type");
+                if ((object.ReferenceEquals(this.playersField, value) != true)) {
+                    this.playersField = value;
+                    this.RaisePropertyChanged("players");
                 }
             }
         }
@@ -264,18 +264,53 @@ namespace GameClient.Server {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="GameType", Namespace="http://schemas.datacontract.org/2004/07/Gameserver.Data.Models")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GameType", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Models")]
     public enum GameType : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         TicTacToe = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Checkers = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Chess = 2,
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="GameDetails", Namespace="http://schemas.datacontract.org/2004/07/Gameserver.Data.Models")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GameServerFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
     [System.SerializableAttribute()]
-    public partial class GameDetails : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class GameServerFault : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GameInformation", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Models")]
+    [System.SerializableAttribute()]
+    public partial class GameInformation : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -284,16 +319,10 @@ namespace GameClient.Server {
         private string descriptionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Guid idField;
+        private GameClient.Server.GameType gameTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int playerMaxField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int playerMinField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string typeField;
+        private int numberOfPlayersField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -319,53 +348,27 @@ namespace GameClient.Server {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Guid id {
+        public GameClient.Server.GameType gameType {
             get {
-                return this.idField;
+                return this.gameTypeField;
             }
             set {
-                if ((this.idField.Equals(value) != true)) {
-                    this.idField = value;
-                    this.RaisePropertyChanged("id");
+                if ((this.gameTypeField.Equals(value) != true)) {
+                    this.gameTypeField = value;
+                    this.RaisePropertyChanged("gameType");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int playerMax {
+        public int numberOfPlayers {
             get {
-                return this.playerMaxField;
+                return this.numberOfPlayersField;
             }
             set {
-                if ((this.playerMaxField.Equals(value) != true)) {
-                    this.playerMaxField = value;
-                    this.RaisePropertyChanged("playerMax");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int playerMin {
-            get {
-                return this.playerMinField;
-            }
-            set {
-                if ((this.playerMinField.Equals(value) != true)) {
-                    this.playerMinField = value;
-                    this.RaisePropertyChanged("playerMin");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string type {
-            get {
-                return this.typeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.typeField, value) != true)) {
-                    this.typeField = value;
-                    this.RaisePropertyChanged("type");
+                if ((this.numberOfPlayersField.Equals(value) != true)) {
+                    this.numberOfPlayersField = value;
+                    this.RaisePropertyChanged("numberOfPlayers");
                 }
             }
         }
@@ -382,7 +385,7 @@ namespace GameClient.Server {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PlayerProfile", Namespace="http://schemas.datacontract.org/2004/07/Gameserver.Data.Models")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PlayerProfile", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Models")]
     [System.SerializableAttribute()]
     public partial class PlayerProfile : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -443,7 +446,180 @@ namespace GameClient.Server {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TicTacToeState", Namespace="http://schemas.datacontract.org/2004/07/Gameserver.Data.Models")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MatchState", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Models")]
+    [System.SerializableAttribute()]
+    public partial class MatchState : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime gameEndTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime gameStartTimeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private GameClient.Server.GameType gameTypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid idField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private GameClient.Server.TicTacToeState inGameStateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private GameClient.Server.GameOperationState operationStateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid playerTurnIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid[] playersField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid winnerIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime gameEndTime {
+            get {
+                return this.gameEndTimeField;
+            }
+            set {
+                if ((this.gameEndTimeField.Equals(value) != true)) {
+                    this.gameEndTimeField = value;
+                    this.RaisePropertyChanged("gameEndTime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime gameStartTime {
+            get {
+                return this.gameStartTimeField;
+            }
+            set {
+                if ((this.gameStartTimeField.Equals(value) != true)) {
+                    this.gameStartTimeField = value;
+                    this.RaisePropertyChanged("gameStartTime");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public GameClient.Server.GameType gameType {
+            get {
+                return this.gameTypeField;
+            }
+            set {
+                if ((this.gameTypeField.Equals(value) != true)) {
+                    this.gameTypeField = value;
+                    this.RaisePropertyChanged("gameType");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid id {
+            get {
+                return this.idField;
+            }
+            set {
+                if ((this.idField.Equals(value) != true)) {
+                    this.idField = value;
+                    this.RaisePropertyChanged("id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public GameClient.Server.TicTacToeState inGameState {
+            get {
+                return this.inGameStateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.inGameStateField, value) != true)) {
+                    this.inGameStateField = value;
+                    this.RaisePropertyChanged("inGameState");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public GameClient.Server.GameOperationState operationState {
+            get {
+                return this.operationStateField;
+            }
+            set {
+                if ((this.operationStateField.Equals(value) != true)) {
+                    this.operationStateField = value;
+                    this.RaisePropertyChanged("operationState");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid playerTurnId {
+            get {
+                return this.playerTurnIdField;
+            }
+            set {
+                if ((this.playerTurnIdField.Equals(value) != true)) {
+                    this.playerTurnIdField = value;
+                    this.RaisePropertyChanged("playerTurnId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid[] players {
+            get {
+                return this.playersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.playersField, value) != true)) {
+                    this.playersField = value;
+                    this.RaisePropertyChanged("players");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid winnerId {
+            get {
+                return this.winnerIdField;
+            }
+            set {
+                if ((this.winnerIdField.Equals(value) != true)) {
+                    this.winnerIdField = value;
+                    this.RaisePropertyChanged("winnerId");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TicTacToeState", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Models")]
     [System.SerializableAttribute()]
     public partial class TicTacToeState : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -452,6 +628,12 @@ namespace GameClient.Server {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private GameClient.Server.PlayerMark[] boardField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid firstPlayerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid secondPlayerField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -476,6 +658,32 @@ namespace GameClient.Server {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid firstPlayer {
+            get {
+                return this.firstPlayerField;
+            }
+            set {
+                if ((this.firstPlayerField.Equals(value) != true)) {
+                    this.firstPlayerField = value;
+                    this.RaisePropertyChanged("firstPlayer");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid secondPlayer {
+            get {
+                return this.secondPlayerField;
+            }
+            set {
+                if ((this.secondPlayerField.Equals(value) != true)) {
+                    this.secondPlayerField = value;
+                    this.RaisePropertyChanged("secondPlayer");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -487,7 +695,24 @@ namespace GameClient.Server {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PlayerMark", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Data.Models.TicTacToe")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GameOperationState", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Models")]
+    public enum GameOperationState : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        WaitingForPlayers = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        InProgress = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Completed = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Failed = 3,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PlayerMark", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Models.TicTacToe")]
     public enum PlayerMark : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
@@ -500,101 +725,8 @@ namespace GameClient.Server {
         O = 2,
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="TicTacToeMove", Namespace="http://schemas.datacontract.org/2004/07/Gameserver.Data.Models")]
-    [System.SerializableAttribute()]
-    public partial class TicTacToeMove : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Guid gameIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private GameClient.Server.PlayerMark markField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private GameClient.Server.MovePosition movePositionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Guid playerIdField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Guid gameId {
-            get {
-                return this.gameIdField;
-            }
-            set {
-                if ((this.gameIdField.Equals(value) != true)) {
-                    this.gameIdField = value;
-                    this.RaisePropertyChanged("gameId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public GameClient.Server.PlayerMark mark {
-            get {
-                return this.markField;
-            }
-            set {
-                if ((this.markField.Equals(value) != true)) {
-                    this.markField = value;
-                    this.RaisePropertyChanged("mark");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public GameClient.Server.MovePosition movePosition {
-            get {
-                return this.movePositionField;
-            }
-            set {
-                if ((this.movePositionField.Equals(value) != true)) {
-                    this.movePositionField = value;
-                    this.RaisePropertyChanged("movePosition");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Guid playerId {
-            get {
-                return this.playerIdField;
-            }
-            set {
-                if ((this.playerIdField.Equals(value) != true)) {
-                    this.playerIdField = value;
-                    this.RaisePropertyChanged("playerId");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="MovePosition", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Data.Models.TicTacToe")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MovePosition", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Models.TicTacToe")]
     public enum MovePosition : int {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
@@ -630,30 +762,35 @@ namespace GameClient.Server {
     public interface IInformationService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInformationService/GetPlayerStats", ReplyAction="http://tempuri.org/IInformationService/GetPlayerStatsResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.GameServerFault), Action="http://tempuri.org/IInformationService/GetPlayerStatsGameServerFaultFault", Name="GameServerFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
         GameClient.Server.PlayerStats GetPlayerStats(System.Guid playerId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInformationService/GetPlayerStats", ReplyAction="http://tempuri.org/IInformationService/GetPlayerStatsResponse")]
         System.Threading.Tasks.Task<GameClient.Server.PlayerStats> GetPlayerStatsAsync(System.Guid playerId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInformationService/GetGameList", ReplyAction="http://tempuri.org/IInformationService/GetGameListResponse")]
-        GameClient.Server.GameDetails[] GetGameList();
+        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.GameServerFault), Action="http://tempuri.org/IInformationService/GetGameListGameServerFaultFault", Name="GameServerFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
+        GameClient.Server.GameInformation[] GetGameList();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInformationService/GetGameList", ReplyAction="http://tempuri.org/IInformationService/GetGameListResponse")]
-        System.Threading.Tasks.Task<GameClient.Server.GameDetails[]> GetGameListAsync();
+        System.Threading.Tasks.Task<GameClient.Server.GameInformation[]> GetGameListAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInformationService/LoginPlayer", ReplyAction="http://tempuri.org/IInformationService/LoginPlayerResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.GameServerFault), Action="http://tempuri.org/IInformationService/LoginPlayerGameServerFaultFault", Name="GameServerFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
         GameClient.Server.PlayerProfile LoginPlayer(string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInformationService/LoginPlayer", ReplyAction="http://tempuri.org/IInformationService/LoginPlayerResponse")]
         System.Threading.Tasks.Task<GameClient.Server.PlayerProfile> LoginPlayerAsync(string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInformationService/LoginGuest", ReplyAction="http://tempuri.org/IInformationService/LoginGuestResponse")]
-        bool LoginGuest();
+        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.GameServerFault), Action="http://tempuri.org/IInformationService/LoginGuestGameServerFaultFault", Name="GameServerFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
+        GameClient.Server.PlayerProfile LoginGuest();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInformationService/LoginGuest", ReplyAction="http://tempuri.org/IInformationService/LoginGuestResponse")]
-        System.Threading.Tasks.Task<bool> LoginGuestAsync();
+        System.Threading.Tasks.Task<GameClient.Server.PlayerProfile> LoginGuestAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInformationService/LogoutPlayer", ReplyAction="http://tempuri.org/IInformationService/LogoutPlayerResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.GameServerFault), Action="http://tempuri.org/IInformationService/LogoutPlayerGameServerFaultFault", Name="GameServerFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
         void LogoutPlayer(System.Guid playerId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInformationService/LogoutPlayer", ReplyAction="http://tempuri.org/IInformationService/LogoutPlayerResponse")]
@@ -695,11 +832,11 @@ namespace GameClient.Server {
             return base.Channel.GetPlayerStatsAsync(playerId);
         }
         
-        public GameClient.Server.GameDetails[] GetGameList() {
+        public GameClient.Server.GameInformation[] GetGameList() {
             return base.Channel.GetGameList();
         }
         
-        public System.Threading.Tasks.Task<GameClient.Server.GameDetails[]> GetGameListAsync() {
+        public System.Threading.Tasks.Task<GameClient.Server.GameInformation[]> GetGameListAsync() {
             return base.Channel.GetGameListAsync();
         }
         
@@ -711,11 +848,11 @@ namespace GameClient.Server {
             return base.Channel.LoginPlayerAsync(username, password);
         }
         
-        public bool LoginGuest() {
+        public GameClient.Server.PlayerProfile LoginGuest() {
             return base.Channel.LoginGuest();
         }
         
-        public System.Threading.Tasks.Task<bool> LoginGuestAsync() {
+        public System.Threading.Tasks.Task<GameClient.Server.PlayerProfile> LoginGuestAsync() {
             return base.Channel.LoginGuestAsync();
         }
         
@@ -733,22 +870,32 @@ namespace GameClient.Server {
     public interface IGameService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/JoinGame", ReplyAction="http://tempuri.org/IGameService/JoinGameResponse")]
-        GameClient.Server.TicTacToeState JoinGame(GameClient.Server.GameType type, System.Guid playerId);
+        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.GameServerFault), Action="http://tempuri.org/IGameService/JoinGameGameServerFaultFault", Name="GameServerFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
+        GameClient.Server.MatchState JoinGame(GameClient.Server.GameType type, System.Guid playerId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/JoinGame", ReplyAction="http://tempuri.org/IGameService/JoinGameResponse")]
-        System.Threading.Tasks.Task<GameClient.Server.TicTacToeState> JoinGameAsync(GameClient.Server.GameType type, System.Guid playerId);
+        System.Threading.Tasks.Task<GameClient.Server.MatchState> JoinGameAsync(GameClient.Server.GameType type, System.Guid playerId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/Quit", ReplyAction="http://tempuri.org/IGameService/QuitResponse")]
-        void Quit(System.Guid gameId, System.Guid playerId);
+        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.GameServerFault), Action="http://tempuri.org/IGameService/QuitGameServerFaultFault", Name="GameServerFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
+        void Quit(System.Guid matchId, System.Guid playerId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/Quit", ReplyAction="http://tempuri.org/IGameService/QuitResponse")]
-        System.Threading.Tasks.Task QuitAsync(System.Guid gameId, System.Guid playerId);
+        System.Threading.Tasks.Task QuitAsync(System.Guid matchId, System.Guid playerId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/PlayerMove", ReplyAction="http://tempuri.org/IGameService/PlayerMoveResponse")]
-        GameClient.Server.TicTacToeState PlayerMove(System.Guid gameId, System.Guid playerId, GameClient.Server.TicTacToeMove move);
+        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.GameServerFault), Action="http://tempuri.org/IGameService/PlayerMoveGameServerFaultFault", Name="GameServerFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
+        GameClient.Server.MatchState PlayerMove(System.Guid matchId, System.Guid playerId, GameClient.Server.MovePosition move);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/PlayerMove", ReplyAction="http://tempuri.org/IGameService/PlayerMoveResponse")]
-        System.Threading.Tasks.Task<GameClient.Server.TicTacToeState> PlayerMoveAsync(System.Guid gameId, System.Guid playerId, GameClient.Server.TicTacToeMove move);
+        System.Threading.Tasks.Task<GameClient.Server.MatchState> PlayerMoveAsync(System.Guid matchId, System.Guid playerId, GameClient.Server.MovePosition move);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/GetMatchState", ReplyAction="http://tempuri.org/IGameService/GetMatchStateResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.GameServerFault), Action="http://tempuri.org/IGameService/GetMatchStateGameServerFaultFault", Name="GameServerFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
+        GameClient.Server.MatchState GetMatchState(System.Guid matchId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/GetMatchState", ReplyAction="http://tempuri.org/IGameService/GetMatchStateResponse")]
+        System.Threading.Tasks.Task<GameClient.Server.MatchState> GetMatchStateAsync(System.Guid matchId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -778,28 +925,36 @@ namespace GameClient.Server {
                 base(binding, remoteAddress) {
         }
         
-        public GameClient.Server.TicTacToeState JoinGame(GameClient.Server.GameType type, System.Guid playerId) {
+        public GameClient.Server.MatchState JoinGame(GameClient.Server.GameType type, System.Guid playerId) {
             return base.Channel.JoinGame(type, playerId);
         }
         
-        public System.Threading.Tasks.Task<GameClient.Server.TicTacToeState> JoinGameAsync(GameClient.Server.GameType type, System.Guid playerId) {
+        public System.Threading.Tasks.Task<GameClient.Server.MatchState> JoinGameAsync(GameClient.Server.GameType type, System.Guid playerId) {
             return base.Channel.JoinGameAsync(type, playerId);
         }
         
-        public void Quit(System.Guid gameId, System.Guid playerId) {
-            base.Channel.Quit(gameId, playerId);
+        public void Quit(System.Guid matchId, System.Guid playerId) {
+            base.Channel.Quit(matchId, playerId);
         }
         
-        public System.Threading.Tasks.Task QuitAsync(System.Guid gameId, System.Guid playerId) {
-            return base.Channel.QuitAsync(gameId, playerId);
+        public System.Threading.Tasks.Task QuitAsync(System.Guid matchId, System.Guid playerId) {
+            return base.Channel.QuitAsync(matchId, playerId);
         }
         
-        public GameClient.Server.TicTacToeState PlayerMove(System.Guid gameId, System.Guid playerId, GameClient.Server.TicTacToeMove move) {
-            return base.Channel.PlayerMove(gameId, playerId, move);
+        public GameClient.Server.MatchState PlayerMove(System.Guid matchId, System.Guid playerId, GameClient.Server.MovePosition move) {
+            return base.Channel.PlayerMove(matchId, playerId, move);
         }
         
-        public System.Threading.Tasks.Task<GameClient.Server.TicTacToeState> PlayerMoveAsync(System.Guid gameId, System.Guid playerId, GameClient.Server.TicTacToeMove move) {
-            return base.Channel.PlayerMoveAsync(gameId, playerId, move);
+        public System.Threading.Tasks.Task<GameClient.Server.MatchState> PlayerMoveAsync(System.Guid matchId, System.Guid playerId, GameClient.Server.MovePosition move) {
+            return base.Channel.PlayerMoveAsync(matchId, playerId, move);
+        }
+        
+        public GameClient.Server.MatchState GetMatchState(System.Guid matchId) {
+            return base.Channel.GetMatchState(matchId);
+        }
+        
+        public System.Threading.Tasks.Task<GameClient.Server.MatchState> GetMatchStateAsync(System.Guid matchId) {
+            return base.Channel.GetMatchStateAsync(matchId);
         }
     }
 }

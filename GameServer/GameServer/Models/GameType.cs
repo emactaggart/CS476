@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameServer.Models
 {
-    enum GameType
+    public enum GameType
     {
         TicTacToe,
         Checkers,

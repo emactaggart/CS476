@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameServer.Models
 {
-    enum GameOperationState
+    public enum GameOperationState
     {
         WaitingForPlayers,
         InProgress,

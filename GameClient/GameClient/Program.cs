@@ -19,10 +19,10 @@ namespace GameClient
         {
             var profile = new PlayerProfile();
             var stats = new BasicObservable<PlayerStats>(new PlayerStats()); //TODO probably don't need observer here
-            var gameList = new BasicObservable<List<GameDetails>>(new List<GameDetails>()); //TODO: probably don't need observer here
+            var gameList = new BasicObservable<List<GameInformation>>(new List<GameInformation>()); //TODO: probably don't need observer here
             var gameService = new GameServiceClient();    //check for connection?
             var infoService = new InformationServiceClient();
-            var state = new BasicObservable<TicTacToeState>(new TicTacToeState());
+            var state = new BasicObservable<MatchState>(new MatchState());
             infoController = new InformationController(infoService, profile, stats, gameList);
             gameController = new GameController(gameService, state);
         }

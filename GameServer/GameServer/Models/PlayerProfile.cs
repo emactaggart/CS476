@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 namespace GameServer.Models
 {
     [DataContract]
-    class PlayerProfile
+    public class PlayerProfile
     {
         [DataMember]
         public Guid id;

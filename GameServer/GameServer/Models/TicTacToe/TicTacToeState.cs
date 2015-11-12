@@ -9,7 +9,7 @@ using GameServer.Models.TicTacToe;
 namespace GameServer.Models
 {
     [DataContract]
-    class TicTacToeState
+    public class TicTacToeState
     {
         [DataMember]
         public List<PlayerMark> board;

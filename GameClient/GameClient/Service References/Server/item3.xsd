@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Gameserver.Data.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Gameserver.Data.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/GameServer.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/GameServer.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:8000/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-  <xs:import schemaLocation="http://localhost:8000/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/GameServer.Data.Models.TicTacToe" />
+  <xs:import schemaLocation="http://localhost:8000/?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://localhost:8000/?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/GameServer.Models.TicTacToe" />
   <xs:complexType name="PlayerStats">
     <xs:sequence>
-      <xs:element minOccurs="0" name="gameHistory" nillable="true" type="tns:ArrayOfTicTacToeResults" />
+      <xs:element minOccurs="0" name="gameHistory" nillable="true" type="tns:ArrayOfMatchResult" />
       <xs:element minOccurs="0" name="playerId" type="ser:guid" />
       <xs:element minOccurs="0" name="totalGames" type="xs:int" />
       <xs:element minOccurs="0" name="totalLosses" type="xs:int" />
@@ -13,45 +14,45 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="PlayerStats" nillable="true" type="tns:PlayerStats" />
-  <xs:complexType name="ArrayOfTicTacToeResults">
+  <xs:complexType name="ArrayOfMatchResult">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="TicTacToeResults" nillable="true" type="tns:TicTacToeResults" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MatchResult" nillable="true" type="tns:MatchResult" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfTicTacToeResults" nillable="true" type="tns:ArrayOfTicTacToeResults" />
-  <xs:complexType name="TicTacToeResults">
+  <xs:element name="ArrayOfMatchResult" nillable="true" type="tns:ArrayOfMatchResult" />
+  <xs:complexType name="MatchResult">
     <xs:sequence>
-      <xs:element minOccurs="0" name="gameId" type="ser:guid" />
-      <xs:element minOccurs="0" name="loserId" type="ser:guid" />
-      <xs:element minOccurs="0" name="player1Id" type="ser:guid" />
-      <xs:element minOccurs="0" name="player2Id" type="ser:guid" />
-      <xs:element minOccurs="0" name="type" type="tns:GameType" />
+      <xs:element minOccurs="0" name="gameEndTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="gameStartTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="gameType" type="tns:GameType" />
+      <xs:element minOccurs="0" name="id" type="ser:guid" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="players" nillable="true" type="q1:ArrayOfguid" />
       <xs:element minOccurs="0" name="winnerId" type="ser:guid" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="TicTacToeResults" nillable="true" type="tns:TicTacToeResults" />
+  <xs:element name="MatchResult" nillable="true" type="tns:MatchResult" />
   <xs:simpleType name="GameType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="TicTacToe" />
+      <xs:enumeration value="Checkers" />
+      <xs:enumeration value="Chess" />
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="GameType" nillable="true" type="tns:GameType" />
-  <xs:complexType name="ArrayOfGameDetails">
+  <xs:complexType name="ArrayOfGameInformation">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="GameDetails" nillable="true" type="tns:GameDetails" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="GameInformation" nillable="true" type="tns:GameInformation" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfGameDetails" nillable="true" type="tns:ArrayOfGameDetails" />
-  <xs:complexType name="GameDetails">
+  <xs:element name="ArrayOfGameInformation" nillable="true" type="tns:ArrayOfGameInformation" />
+  <xs:complexType name="GameInformation">
     <xs:sequence>
       <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="id" type="ser:guid" />
-      <xs:element minOccurs="0" name="playerMax" type="xs:int" />
-      <xs:element minOccurs="0" name="playerMin" type="xs:int" />
-      <xs:element minOccurs="0" name="type" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="gameType" type="tns:GameType" />
+      <xs:element minOccurs="0" name="numberOfPlayers" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="GameDetails" nillable="true" type="tns:GameDetails" />
+  <xs:element name="GameInformation" nillable="true" type="tns:GameInformation" />
   <xs:complexType name="PlayerProfile">
     <xs:sequence>
       <xs:element minOccurs="0" name="id" type="ser:guid" />
@@ -59,19 +60,35 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="PlayerProfile" nillable="true" type="tns:PlayerProfile" />
+  <xs:complexType name="MatchState">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="gameEndTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="gameStartTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="gameType" type="tns:GameType" />
+      <xs:element minOccurs="0" name="id" type="ser:guid" />
+      <xs:element minOccurs="0" name="inGameState" nillable="true" type="tns:TicTacToeState" />
+      <xs:element minOccurs="0" name="operationState" type="tns:GameOperationState" />
+      <xs:element minOccurs="0" name="playerTurnId" type="ser:guid" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="players" nillable="true" type="q2:ArrayOfguid" />
+      <xs:element minOccurs="0" name="winnerId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MatchState" nillable="true" type="tns:MatchState" />
   <xs:complexType name="TicTacToeState">
     <xs:sequence>
-      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/GameServer.Data.Models.TicTacToe" minOccurs="0" name="board" nillable="true" type="q1:ArrayOfPlayerMark" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/GameServer.Models.TicTacToe" minOccurs="0" name="board" nillable="true" type="q3:ArrayOfPlayerMark" />
+      <xs:element minOccurs="0" name="firstPlayer" type="ser:guid" />
+      <xs:element minOccurs="0" name="secondPlayer" type="ser:guid" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="TicTacToeState" nillable="true" type="tns:TicTacToeState" />
-  <xs:complexType name="TicTacToeMove">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="gameId" type="ser:guid" />
-      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/GameServer.Data.Models.TicTacToe" minOccurs="0" name="mark" type="q2:PlayerMark" />
-      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/GameServer.Data.Models.TicTacToe" minOccurs="0" name="movePosition" type="q3:MovePosition" />
-      <xs:element minOccurs="0" name="playerId" type="ser:guid" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="TicTacToeMove" nillable="true" type="tns:TicTacToeMove" />
+  <xs:simpleType name="GameOperationState">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="WaitingForPlayers" />
+      <xs:enumeration value="InProgress" />
+      <xs:enumeration value="Completed" />
+      <xs:enumeration value="Failed" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="GameOperationState" nillable="true" type="tns:GameOperationState" />
 </xs:schema>

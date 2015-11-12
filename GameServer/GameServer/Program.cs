@@ -16,7 +16,7 @@ namespace GameServer
         //TODO: ensure both these are singletons with locking write access
         public static List<MatchState> onlineMatchList = new List<MatchState>();
         public static List<PlayerProfile> onlinePlayerList = new List<PlayerProfile>();
-        public static GameController gameController = new GameController();
+        public static GameController gameController = new GameController(new DataController());
         public static InformationController infoController = new InformationController(new DataController());
 
         static void Main(string[] args)

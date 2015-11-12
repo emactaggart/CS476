@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameServer.Models.TicTacToe;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 namespace GameServer.Models
 {
     [DataContract]
-    class MatchState
+    public class MatchState
     {
         [DataMember]
         public Guid id;
@@ -20,6 +21,9 @@ namespace GameServer.Models
         public DateTime gameEndTime;
         [DataMember]
         public GameType gameType;
+        [DataMember]
+        public Guid playerTurnId;   //move this inside TicTacToeState ???
+        //TODO: add game move counter to this and PlayerMove
         [DataMember]
         public GameOperationState operationState;
         [DataMember]
