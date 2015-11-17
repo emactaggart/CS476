@@ -11,7 +11,6 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TicTacToeWin32;
 
 namespace GameClient.Views 
 {
