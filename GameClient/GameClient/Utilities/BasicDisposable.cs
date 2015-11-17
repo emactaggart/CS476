@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameClient.Utilities
 {
-    class BasicDisposable<T> : IDisposable
+    public class BasicDisposable<T> : IDisposable
     {
         List<IObserver<T>> _observerList;
         IObserver<T> _observer;

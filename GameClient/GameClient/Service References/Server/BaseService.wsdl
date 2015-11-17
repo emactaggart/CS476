@@ -134,7 +134,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IInformationService_GetPlayerStats_GameServerFaultFault_Fault">
+  <wsp:Policy wsu:Id="WSHttpBinding_IInformationService_GetPlayerStats_EmptyResultsFaultFault_Fault">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -191,7 +191,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IInformationService_GetGameList_GameServerFaultFault_Fault">
+  <wsp:Policy wsu:Id="WSHttpBinding_IInformationService_GetGameList_EmptyResultsFaultFault_Fault">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -248,7 +248,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IInformationService_CreatePlayerAccount_GameServerFaultFault_Fault">
+  <wsp:Policy wsu:Id="WSHttpBinding_IInformationService_CreatePlayerAccount_UsernameAlreadyExistsFaultFault_Fault">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -305,7 +305,26 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IInformationService_LoginPlayer_GameServerFaultFault_Fault">
+  <wsp:Policy wsu:Id="WSHttpBinding_IInformationService_LoginPlayer_InvalidUsernameFaultFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IInformationService_LoginPlayer_InvalidPasswordFaultFault_Fault">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -362,25 +381,6 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IInformationService_LoginGuest_GameServerFaultFault_Fault">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
   <wsp:Policy wsu:Id="WSHttpBinding_IInformationService_LogoutPlayer_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -401,25 +401,6 @@
     </wsp:ExactlyOne>
   </wsp:Policy>
   <wsp:Policy wsu:Id="WSHttpBinding_IInformationService_LogoutPlayer_output_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IInformationService_LogoutPlayer_GameServerFaultFault_Fault">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -572,25 +553,6 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IGameService_JoinGame_GameServerFaultFault_Fault">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
   <wsp:Policy wsu:Id="WSHttpBinding_IGameService_Quit_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -629,7 +591,26 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IGameService_Quit_GameServerFaultFault_Fault">
+  <wsp:Policy wsu:Id="WSHttpBinding_IGameService_Quit_PlayerNotInSpecifiedGameFaultFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IGameService_Quit_EmptyResultsFaultFault_Fault">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -686,7 +667,102 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IGameService_PlayerMove_GameServerFaultFault_Fault">
+  <wsp:Policy wsu:Id="WSHttpBinding_IGameService_PlayerMove_WaitingForPlayersFaultFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IGameService_PlayerMove_GameIsOverFaultFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IGameService_PlayerMove_PlayerNotInSpecifiedGameFaultFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IGameService_PlayerMove_NotPlayersTurnFaultFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IGameService_PlayerMove_InvalidPlayerMoveFaultFault_Fault">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IGameService_PlayerMove_EmptyResultsFaultFault_Fault">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -743,7 +819,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IGameService_GetMatchState_GameServerFaultFault_Fault">
+  <wsp:Policy wsu:Id="WSHttpBinding_IGameService_GetMatchState_EmptyResultsFaultFault_Fault">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -778,8 +854,8 @@
   <wsdl:message name="IInformationService_GetPlayerStats_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetPlayerStatsResponse" />
   </wsdl:message>
-  <wsdl:message name="IInformationService_GetPlayerStats_GameServerFaultFault_FaultMessage">
-    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/GameServer.Utilities" name="detail" element="q1:GameServerFault" />
+  <wsdl:message name="IInformationService_GetPlayerStats_EmptyResultsFaultFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/GameServer.Utilities" name="detail" element="q1:EmptyResultsFault" />
   </wsdl:message>
   <wsdl:message name="IInformationService_GetGameList_InputMessage">
     <wsdl:part name="parameters" element="tns:GetGameList" />
@@ -787,8 +863,8 @@
   <wsdl:message name="IInformationService_GetGameList_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetGameListResponse" />
   </wsdl:message>
-  <wsdl:message name="IInformationService_GetGameList_GameServerFaultFault_FaultMessage">
-    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/GameServer.Utilities" name="detail" element="q2:GameServerFault" />
+  <wsdl:message name="IInformationService_GetGameList_EmptyResultsFaultFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/GameServer.Utilities" name="detail" element="q2:EmptyResultsFault" />
   </wsdl:message>
   <wsdl:message name="IInformationService_CreatePlayerAccount_InputMessage">
     <wsdl:part name="parameters" element="tns:CreatePlayerAccount" />
@@ -796,8 +872,8 @@
   <wsdl:message name="IInformationService_CreatePlayerAccount_OutputMessage">
     <wsdl:part name="parameters" element="tns:CreatePlayerAccountResponse" />
   </wsdl:message>
-  <wsdl:message name="IInformationService_CreatePlayerAccount_GameServerFaultFault_FaultMessage">
-    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/GameServer.Utilities" name="detail" element="q3:GameServerFault" />
+  <wsdl:message name="IInformationService_CreatePlayerAccount_UsernameAlreadyExistsFaultFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/GameServer.Utilities" name="detail" element="q3:UsernameAlreadyExistsFault" />
   </wsdl:message>
   <wsdl:message name="IInformationService_LoginPlayer_InputMessage">
     <wsdl:part name="parameters" element="tns:LoginPlayer" />
@@ -805,8 +881,11 @@
   <wsdl:message name="IInformationService_LoginPlayer_OutputMessage">
     <wsdl:part name="parameters" element="tns:LoginPlayerResponse" />
   </wsdl:message>
-  <wsdl:message name="IInformationService_LoginPlayer_GameServerFaultFault_FaultMessage">
-    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/GameServer.Utilities" name="detail" element="q4:GameServerFault" />
+  <wsdl:message name="IInformationService_LoginPlayer_InvalidUsernameFaultFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/GameServer.Utilities" name="detail" element="q4:InvalidUsernameFault" />
+  </wsdl:message>
+  <wsdl:message name="IInformationService_LoginPlayer_InvalidPasswordFaultFault_FaultMessage">
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/GameServer.Utilities" name="detail" element="q5:InvalidPasswordFault" />
   </wsdl:message>
   <wsdl:message name="IInformationService_LoginGuest_InputMessage">
     <wsdl:part name="parameters" element="tns:LoginGuest" />
@@ -814,17 +893,11 @@
   <wsdl:message name="IInformationService_LoginGuest_OutputMessage">
     <wsdl:part name="parameters" element="tns:LoginGuestResponse" />
   </wsdl:message>
-  <wsdl:message name="IInformationService_LoginGuest_GameServerFaultFault_FaultMessage">
-    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/GameServer.Utilities" name="detail" element="q5:GameServerFault" />
-  </wsdl:message>
   <wsdl:message name="IInformationService_LogoutPlayer_InputMessage">
     <wsdl:part name="parameters" element="tns:LogoutPlayer" />
   </wsdl:message>
   <wsdl:message name="IInformationService_LogoutPlayer_OutputMessage">
     <wsdl:part name="parameters" element="tns:LogoutPlayerResponse" />
-  </wsdl:message>
-  <wsdl:message name="IInformationService_LogoutPlayer_GameServerFaultFault_FaultMessage">
-    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/GameServer.Utilities" name="detail" element="q6:GameServerFault" />
   </wsdl:message>
   <wsdl:message name="IGameService_JoinGame_InputMessage">
     <wsdl:part name="parameters" element="tns:JoinGame" />
@@ -832,17 +905,17 @@
   <wsdl:message name="IGameService_JoinGame_OutputMessage">
     <wsdl:part name="parameters" element="tns:JoinGameResponse" />
   </wsdl:message>
-  <wsdl:message name="IGameService_JoinGame_GameServerFaultFault_FaultMessage">
-    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/GameServer.Utilities" name="detail" element="q7:GameServerFault" />
-  </wsdl:message>
   <wsdl:message name="IGameService_Quit_InputMessage">
     <wsdl:part name="parameters" element="tns:Quit" />
   </wsdl:message>
   <wsdl:message name="IGameService_Quit_OutputMessage">
     <wsdl:part name="parameters" element="tns:QuitResponse" />
   </wsdl:message>
-  <wsdl:message name="IGameService_Quit_GameServerFaultFault_FaultMessage">
-    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/GameServer.Utilities" name="detail" element="q8:GameServerFault" />
+  <wsdl:message name="IGameService_Quit_PlayerNotInSpecifiedGameFaultFault_FaultMessage">
+    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/GameServer.Utilities" name="detail" element="q6:PlayerNotInSpecifiedGameFault" />
+  </wsdl:message>
+  <wsdl:message name="IGameService_Quit_EmptyResultsFaultFault_FaultMessage">
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/GameServer.Utilities" name="detail" element="q7:EmptyResultsFault" />
   </wsdl:message>
   <wsdl:message name="IGameService_PlayerMove_InputMessage">
     <wsdl:part name="parameters" element="tns:PlayerMove" />
@@ -850,8 +923,23 @@
   <wsdl:message name="IGameService_PlayerMove_OutputMessage">
     <wsdl:part name="parameters" element="tns:PlayerMoveResponse" />
   </wsdl:message>
-  <wsdl:message name="IGameService_PlayerMove_GameServerFaultFault_FaultMessage">
-    <wsdl:part xmlns:q9="http://schemas.datacontract.org/2004/07/GameServer.Utilities" name="detail" element="q9:GameServerFault" />
+  <wsdl:message name="IGameService_PlayerMove_WaitingForPlayersFaultFault_FaultMessage">
+    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/GameServer.Utilities" name="detail" element="q8:WaitingForPlayersFault" />
+  </wsdl:message>
+  <wsdl:message name="IGameService_PlayerMove_GameIsOverFaultFault_FaultMessage">
+    <wsdl:part xmlns:q9="http://schemas.datacontract.org/2004/07/GameServer.Utilities" name="detail" element="q9:GameIsOverFault" />
+  </wsdl:message>
+  <wsdl:message name="IGameService_PlayerMove_PlayerNotInSpecifiedGameFaultFault_FaultMessage">
+    <wsdl:part xmlns:q10="http://schemas.datacontract.org/2004/07/GameServer.Utilities" name="detail" element="q10:PlayerNotInSpecifiedGameFault" />
+  </wsdl:message>
+  <wsdl:message name="IGameService_PlayerMove_NotPlayersTurnFaultFault_FaultMessage">
+    <wsdl:part xmlns:q11="http://schemas.datacontract.org/2004/07/GameServer.Utilities" name="detail" element="q11:NotPlayersTurnFault" />
+  </wsdl:message>
+  <wsdl:message name="IGameService_PlayerMove_InvalidPlayerMoveFaultFault_FaultMessage">
+    <wsdl:part xmlns:q12="http://schemas.datacontract.org/2004/07/GameServer.Utilities" name="detail" element="q12:InvalidPlayerMoveFault" />
+  </wsdl:message>
+  <wsdl:message name="IGameService_PlayerMove_EmptyResultsFaultFault_FaultMessage">
+    <wsdl:part xmlns:q13="http://schemas.datacontract.org/2004/07/GameServer.Utilities" name="detail" element="q13:EmptyResultsFault" />
   </wsdl:message>
   <wsdl:message name="IGameService_GetMatchState_InputMessage">
     <wsdl:part name="parameters" element="tns:GetMatchState" />
@@ -859,61 +947,65 @@
   <wsdl:message name="IGameService_GetMatchState_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetMatchStateResponse" />
   </wsdl:message>
-  <wsdl:message name="IGameService_GetMatchState_GameServerFaultFault_FaultMessage">
-    <wsdl:part xmlns:q10="http://schemas.datacontract.org/2004/07/GameServer.Utilities" name="detail" element="q10:GameServerFault" />
+  <wsdl:message name="IGameService_GetMatchState_EmptyResultsFaultFault_FaultMessage">
+    <wsdl:part xmlns:q14="http://schemas.datacontract.org/2004/07/GameServer.Utilities" name="detail" element="q14:EmptyResultsFault" />
   </wsdl:message>
   <wsdl:portType name="IInformationService">
     <wsdl:operation name="GetPlayerStats">
       <wsdl:input wsaw:Action="http://tempuri.org/IInformationService/GetPlayerStats" message="tns:IInformationService_GetPlayerStats_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IInformationService/GetPlayerStatsResponse" message="tns:IInformationService_GetPlayerStats_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IInformationService/GetPlayerStatsGameServerFaultFault" name="GameServerFaultFault" message="tns:IInformationService_GetPlayerStats_GameServerFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IInformationService/GetPlayerStatsEmptyResultsFaultFault" name="EmptyResultsFaultFault" message="tns:IInformationService_GetPlayerStats_EmptyResultsFaultFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetGameList">
       <wsdl:input wsaw:Action="http://tempuri.org/IInformationService/GetGameList" message="tns:IInformationService_GetGameList_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IInformationService/GetGameListResponse" message="tns:IInformationService_GetGameList_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IInformationService/GetGameListGameServerFaultFault" name="GameServerFaultFault" message="tns:IInformationService_GetGameList_GameServerFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IInformationService/GetGameListEmptyResultsFaultFault" name="EmptyResultsFaultFault" message="tns:IInformationService_GetGameList_EmptyResultsFaultFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="CreatePlayerAccount">
       <wsdl:input wsaw:Action="http://tempuri.org/IInformationService/CreatePlayerAccount" message="tns:IInformationService_CreatePlayerAccount_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IInformationService/CreatePlayerAccountResponse" message="tns:IInformationService_CreatePlayerAccount_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IInformationService/CreatePlayerAccountGameServerFaultFault" name="GameServerFaultFault" message="tns:IInformationService_CreatePlayerAccount_GameServerFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IInformationService/CreatePlayerAccountUsernameAlreadyExistsFaultFault" name="UsernameAlreadyExistsFaultFault" message="tns:IInformationService_CreatePlayerAccount_UsernameAlreadyExistsFaultFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="LoginPlayer">
       <wsdl:input wsaw:Action="http://tempuri.org/IInformationService/LoginPlayer" message="tns:IInformationService_LoginPlayer_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IInformationService/LoginPlayerResponse" message="tns:IInformationService_LoginPlayer_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IInformationService/LoginPlayerGameServerFaultFault" name="GameServerFaultFault" message="tns:IInformationService_LoginPlayer_GameServerFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IInformationService/LoginPlayerInvalidUsernameFaultFault" name="InvalidUsernameFaultFault" message="tns:IInformationService_LoginPlayer_InvalidUsernameFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IInformationService/LoginPlayerInvalidPasswordFaultFault" name="InvalidPasswordFaultFault" message="tns:IInformationService_LoginPlayer_InvalidPasswordFaultFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="LoginGuest">
       <wsdl:input wsaw:Action="http://tempuri.org/IInformationService/LoginGuest" message="tns:IInformationService_LoginGuest_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IInformationService/LoginGuestResponse" message="tns:IInformationService_LoginGuest_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IInformationService/LoginGuestGameServerFaultFault" name="GameServerFaultFault" message="tns:IInformationService_LoginGuest_GameServerFaultFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="LogoutPlayer">
       <wsdl:input wsaw:Action="http://tempuri.org/IInformationService/LogoutPlayer" message="tns:IInformationService_LogoutPlayer_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IInformationService/LogoutPlayerResponse" message="tns:IInformationService_LogoutPlayer_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IInformationService/LogoutPlayerGameServerFaultFault" name="GameServerFaultFault" message="tns:IInformationService_LogoutPlayer_GameServerFaultFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IGameService">
     <wsdl:operation name="JoinGame">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameService/JoinGame" message="tns:IGameService_JoinGame_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGameService/JoinGameResponse" message="tns:IGameService_JoinGame_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IGameService/JoinGameGameServerFaultFault" name="GameServerFaultFault" message="tns:IGameService_JoinGame_GameServerFaultFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="Quit">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameService/Quit" message="tns:IGameService_Quit_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGameService/QuitResponse" message="tns:IGameService_Quit_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IGameService/QuitGameServerFaultFault" name="GameServerFaultFault" message="tns:IGameService_Quit_GameServerFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGameService/QuitPlayerNotInSpecifiedGameFaultFault" name="PlayerNotInSpecifiedGameFaultFault" message="tns:IGameService_Quit_PlayerNotInSpecifiedGameFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGameService/QuitEmptyResultsFaultFault" name="EmptyResultsFaultFault" message="tns:IGameService_Quit_EmptyResultsFaultFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="PlayerMove">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameService/PlayerMove" message="tns:IGameService_PlayerMove_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGameService/PlayerMoveResponse" message="tns:IGameService_PlayerMove_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IGameService/PlayerMoveGameServerFaultFault" name="GameServerFaultFault" message="tns:IGameService_PlayerMove_GameServerFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGameService/PlayerMoveWaitingForPlayersFaultFault" name="WaitingForPlayersFaultFault" message="tns:IGameService_PlayerMove_WaitingForPlayersFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGameService/PlayerMoveGameIsOverFaultFault" name="GameIsOverFaultFault" message="tns:IGameService_PlayerMove_GameIsOverFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGameService/PlayerMovePlayerNotInSpecifiedGameFaultFault" name="PlayerNotInSpecifiedGameFaultFault" message="tns:IGameService_PlayerMove_PlayerNotInSpecifiedGameFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGameService/PlayerMoveNotPlayersTurnFaultFault" name="NotPlayersTurnFaultFault" message="tns:IGameService_PlayerMove_NotPlayersTurnFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGameService/PlayerMoveInvalidPlayerMoveFaultFault" name="InvalidPlayerMoveFaultFault" message="tns:IGameService_PlayerMove_InvalidPlayerMoveFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGameService/PlayerMoveEmptyResultsFaultFault" name="EmptyResultsFaultFault" message="tns:IGameService_PlayerMove_EmptyResultsFaultFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetMatchState">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameService/GetMatchState" message="tns:IGameService_GetMatchState_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGameService/GetMatchStateResponse" message="tns:IGameService_GetMatchState_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IGameService/GetMatchStateGameServerFaultFault" name="GameServerFaultFault" message="tns:IGameService_GetMatchState_GameServerFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGameService/GetMatchStateEmptyResultsFaultFault" name="EmptyResultsFaultFault" message="tns:IGameService_GetMatchState_EmptyResultsFaultFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSHttpBinding_IInformationService" type="tns:IInformationService">
@@ -929,9 +1021,9 @@
         <wsp:PolicyReference URI="#WSHttpBinding_IInformationService_GetPlayerStats_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
-      <wsdl:fault name="GameServerFaultFault">
-        <wsp:PolicyReference URI="#WSHttpBinding_IInformationService_GetPlayerStats_GameServerFaultFault_Fault" />
-        <soap12:fault use="literal" name="GameServerFaultFault" namespace="" />
+      <wsdl:fault name="EmptyResultsFaultFault">
+        <wsp:PolicyReference URI="#WSHttpBinding_IInformationService_GetPlayerStats_EmptyResultsFaultFault_Fault" />
+        <soap12:fault use="literal" name="EmptyResultsFaultFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="GetGameList">
@@ -944,9 +1036,9 @@
         <wsp:PolicyReference URI="#WSHttpBinding_IInformationService_GetGameList_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
-      <wsdl:fault name="GameServerFaultFault">
-        <wsp:PolicyReference URI="#WSHttpBinding_IInformationService_GetGameList_GameServerFaultFault_Fault" />
-        <soap12:fault use="literal" name="GameServerFaultFault" namespace="" />
+      <wsdl:fault name="EmptyResultsFaultFault">
+        <wsp:PolicyReference URI="#WSHttpBinding_IInformationService_GetGameList_EmptyResultsFaultFault_Fault" />
+        <soap12:fault use="literal" name="EmptyResultsFaultFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="CreatePlayerAccount">
@@ -959,9 +1051,9 @@
         <wsp:PolicyReference URI="#WSHttpBinding_IInformationService_CreatePlayerAccount_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
-      <wsdl:fault name="GameServerFaultFault">
-        <wsp:PolicyReference URI="#WSHttpBinding_IInformationService_CreatePlayerAccount_GameServerFaultFault_Fault" />
-        <soap12:fault use="literal" name="GameServerFaultFault" namespace="" />
+      <wsdl:fault name="UsernameAlreadyExistsFaultFault">
+        <wsp:PolicyReference URI="#WSHttpBinding_IInformationService_CreatePlayerAccount_UsernameAlreadyExistsFaultFault_Fault" />
+        <soap12:fault use="literal" name="UsernameAlreadyExistsFaultFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="LoginPlayer">
@@ -974,9 +1066,13 @@
         <wsp:PolicyReference URI="#WSHttpBinding_IInformationService_LoginPlayer_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
-      <wsdl:fault name="GameServerFaultFault">
-        <wsp:PolicyReference URI="#WSHttpBinding_IInformationService_LoginPlayer_GameServerFaultFault_Fault" />
-        <soap12:fault use="literal" name="GameServerFaultFault" namespace="" />
+      <wsdl:fault name="InvalidUsernameFaultFault">
+        <wsp:PolicyReference URI="#WSHttpBinding_IInformationService_LoginPlayer_InvalidUsernameFaultFault_Fault" />
+        <soap12:fault use="literal" name="InvalidUsernameFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidPasswordFaultFault">
+        <wsp:PolicyReference URI="#WSHttpBinding_IInformationService_LoginPlayer_InvalidPasswordFaultFault_Fault" />
+        <soap12:fault use="literal" name="InvalidPasswordFaultFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="LoginGuest">
@@ -989,10 +1085,6 @@
         <wsp:PolicyReference URI="#WSHttpBinding_IInformationService_LoginGuest_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
-      <wsdl:fault name="GameServerFaultFault">
-        <wsp:PolicyReference URI="#WSHttpBinding_IInformationService_LoginGuest_GameServerFaultFault_Fault" />
-        <soap12:fault use="literal" name="GameServerFaultFault" namespace="" />
-      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="LogoutPlayer">
       <soap12:operation soapAction="http://tempuri.org/IInformationService/LogoutPlayer" style="document" />
@@ -1004,10 +1096,6 @@
         <wsp:PolicyReference URI="#WSHttpBinding_IInformationService_LogoutPlayer_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
-      <wsdl:fault name="GameServerFaultFault">
-        <wsp:PolicyReference URI="#WSHttpBinding_IInformationService_LogoutPlayer_GameServerFaultFault_Fault" />
-        <soap12:fault use="literal" name="GameServerFaultFault" namespace="" />
-      </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WSHttpBinding_IGameService" type="tns:IGameService">
@@ -1023,10 +1111,6 @@
         <wsp:PolicyReference URI="#WSHttpBinding_IGameService_JoinGame_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
-      <wsdl:fault name="GameServerFaultFault">
-        <wsp:PolicyReference URI="#WSHttpBinding_IGameService_JoinGame_GameServerFaultFault_Fault" />
-        <soap12:fault use="literal" name="GameServerFaultFault" namespace="" />
-      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="Quit">
       <soap12:operation soapAction="http://tempuri.org/IGameService/Quit" style="document" />
@@ -1038,9 +1122,13 @@
         <wsp:PolicyReference URI="#WSHttpBinding_IGameService_Quit_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
-      <wsdl:fault name="GameServerFaultFault">
-        <wsp:PolicyReference URI="#WSHttpBinding_IGameService_Quit_GameServerFaultFault_Fault" />
-        <soap12:fault use="literal" name="GameServerFaultFault" namespace="" />
+      <wsdl:fault name="PlayerNotInSpecifiedGameFaultFault">
+        <wsp:PolicyReference URI="#WSHttpBinding_IGameService_Quit_PlayerNotInSpecifiedGameFaultFault_Fault" />
+        <soap12:fault use="literal" name="PlayerNotInSpecifiedGameFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="EmptyResultsFaultFault">
+        <wsp:PolicyReference URI="#WSHttpBinding_IGameService_Quit_EmptyResultsFaultFault_Fault" />
+        <soap12:fault use="literal" name="EmptyResultsFaultFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="PlayerMove">
@@ -1053,9 +1141,29 @@
         <wsp:PolicyReference URI="#WSHttpBinding_IGameService_PlayerMove_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
-      <wsdl:fault name="GameServerFaultFault">
-        <wsp:PolicyReference URI="#WSHttpBinding_IGameService_PlayerMove_GameServerFaultFault_Fault" />
-        <soap12:fault use="literal" name="GameServerFaultFault" namespace="" />
+      <wsdl:fault name="WaitingForPlayersFaultFault">
+        <wsp:PolicyReference URI="#WSHttpBinding_IGameService_PlayerMove_WaitingForPlayersFaultFault_Fault" />
+        <soap12:fault use="literal" name="WaitingForPlayersFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="GameIsOverFaultFault">
+        <wsp:PolicyReference URI="#WSHttpBinding_IGameService_PlayerMove_GameIsOverFaultFault_Fault" />
+        <soap12:fault use="literal" name="GameIsOverFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="PlayerNotInSpecifiedGameFaultFault">
+        <wsp:PolicyReference URI="#WSHttpBinding_IGameService_PlayerMove_PlayerNotInSpecifiedGameFaultFault_Fault" />
+        <soap12:fault use="literal" name="PlayerNotInSpecifiedGameFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="NotPlayersTurnFaultFault">
+        <wsp:PolicyReference URI="#WSHttpBinding_IGameService_PlayerMove_NotPlayersTurnFaultFault_Fault" />
+        <soap12:fault use="literal" name="NotPlayersTurnFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="InvalidPlayerMoveFaultFault">
+        <wsp:PolicyReference URI="#WSHttpBinding_IGameService_PlayerMove_InvalidPlayerMoveFaultFault_Fault" />
+        <soap12:fault use="literal" name="InvalidPlayerMoveFaultFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="EmptyResultsFaultFault">
+        <wsp:PolicyReference URI="#WSHttpBinding_IGameService_PlayerMove_EmptyResultsFaultFault_Fault" />
+        <soap12:fault use="literal" name="EmptyResultsFaultFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="GetMatchState">
@@ -1068,9 +1176,9 @@
         <wsp:PolicyReference URI="#WSHttpBinding_IGameService_GetMatchState_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
-      <wsdl:fault name="GameServerFaultFault">
-        <wsp:PolicyReference URI="#WSHttpBinding_IGameService_GetMatchState_GameServerFaultFault_Fault" />
-        <soap12:fault use="literal" name="GameServerFaultFault" namespace="" />
+      <wsdl:fault name="EmptyResultsFaultFault">
+        <wsp:PolicyReference URI="#WSHttpBinding_IGameService_GetMatchState_EmptyResultsFaultFault_Fault" />
+        <soap12:fault use="literal" name="EmptyResultsFaultFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>

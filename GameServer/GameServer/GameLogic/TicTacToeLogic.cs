@@ -1,5 +1,6 @@
 ﻿using GameServer.Models;
 using GameServer.Models.TicTacToe;
+using GameServer.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,84 +13,65 @@ namespace GameServer.GameLogic
     {
         public static MatchState CalculateNextState(MatchState currentState, Guid playerId, MovePosition move)
         {
-
-            if (currentState.operationState == GameOperationState.Completed)
+            var nextState = currentState;
+            if (nextState.operationState == GameOperationState.Completed)
             {
-                //game is over
-                throw new Exception();
+                throw new GameIsOverException();
             }
 
-            if (currentState.playerTurnId != playerId)
+            if (nextState.playerTurnId != playerId)
             {
-                //not your turn
-                throw new Exception();
+                throw new NotPlayersTurnException();
             } 
         
-            if (currentState.inGameState.board[(int)move] != PlayerMark.Empty)
+            if (nextState.inGameState.board[(int)move] != PlayerMark.Empty)
             {
-                //board position not empty, invalid move
-                throw new Exception();
+                throw new InvalidPlayerMoveException();
             }
 
-            //place move in location
-            if (playerId == currentState.inGameState.firstPlayer)
+            if (playerId == nextState.inGameState.firstPlayer)
             {
-                currentState.inGameState.board[(int)move] = PlayerMark.X;       //fix this
+                nextState.inGameState.board[(int)move] = PlayerMark.X;
             }
             else
             {
-                currentState.inGameState.board[(int)move] = PlayerMark.O;       //fix this
+                nextState.inGameState.board[(int)move] = PlayerMark.O;
             }
 
-
-            if (IsGameTie(currentState.inGameState))
+            if (DoesGameHaveWinner(nextState.inGameState))
             {
-                currentState.winnerId = Guid.Empty;
-                //set gameendtime
-                currentState.gameEndTime = DateTime.Now;
-                //set operationstate to completed
-                currentState.operationState = GameOperationState.Completed;
-            } 
-            else if (IsGameOver(currentState.inGameState))
+                nextState.playerTurnId = Guid.Empty;
+                nextState.winnerId = playerId;
+                nextState.gameEndTime = DateTime.Now;
+                nextState.operationState = GameOperationState.Completed;
+            }
+            else if (IsGameTie(nextState.inGameState))
             {
-                currentState.winnerId = playerId;
-                //set gameendtime
-                currentState.gameEndTime = DateTime.Now;
-                //set operationstate to completed
-                currentState.operationState = GameOperationState.Completed;
+                nextState.playerTurnId = Guid.Empty;
+                nextState.winnerId = Guid.Empty;
+                nextState.gameEndTime = DateTime.Now;
+                nextState.operationState = GameOperationState.Completed;
             }
             else
             {
-                //else change player turn
-                if (currentState.playerTurnId == currentState.inGameState.firstPlayer)
-                {
-                    currentState.playerTurnId = currentState.inGameState.secondPlayer;
-                }
-                else
-                {
-                    currentState.playerTurnId = currentState.inGameState.firstPlayer;
-                }
+                nextState.playerTurnId = AlternateTurn(nextState);
             }
-            return currentState;
+
+            return nextState;
         }
 
-        public static bool IsGameOver(TicTacToeState state)
+        public static Guid AlternateTurn(MatchState currentState)
         {
-            var board = state.board;
-            var winningLines = new List<List<MovePosition>>
+            var turn = Guid.Empty;
+            if (currentState.playerTurnId == currentState.inGameState.firstPlayer)
             {
-                new List<MovePosition> { MovePosition.TopLeft, MovePosition.TopCenter, MovePosition.TopRight },
-                new List<MovePosition> { MovePosition.MiddleLeft, MovePosition.MiddleCenter, MovePosition.MiddleRight },
-                new List<MovePosition> { MovePosition.BottomLeft, MovePosition.BottomCenter, MovePosition.BottomRight },
-                new List<MovePosition> { MovePosition.TopLeft, MovePosition.MiddleLeft, MovePosition.BottomLeft },
-                new List<MovePosition> { MovePosition.TopCenter, MovePosition.MiddleCenter, MovePosition.BottomCenter },
-                new List<MovePosition> { MovePosition.TopRight, MovePosition.MiddleRight, MovePosition.BottomRight },
-                new List<MovePosition> { MovePosition.TopLeft, MovePosition.MiddleCenter, MovePosition.BottomRight },
-                new List<MovePosition> { MovePosition.BottomLeft, MovePosition.MiddleCenter, MovePosition.TopRight },
-            };
-
-            bool gameOver = winningLines.Any( x => IsLineAllEqual(board, x[0], x[1], x[2]));
-            return gameOver;
+                turn = currentState.inGameState.secondPlayer;
+            }
+            else
+            {
+                turn = currentState.inGameState.firstPlayer;
+            }
+            return turn;
         }
 
         public static bool IsLineAllEqual(List<PlayerMark> board, MovePosition first, MovePosition second, MovePosition third)
@@ -106,11 +88,41 @@ namespace GameServer.GameLogic
             return false;
         }
 
+        public static bool IsGameOver(TicTacToeState state)
+        {
+            bool gameOver = DoesGameHaveWinner(state) || IsBoardFull(state);
+            return gameOver;
+        }
+
         public static bool IsGameTie(TicTacToeState state)
         {
+            var isTie = IsBoardFull(state) && !DoesGameHaveWinner(state);
+            return isTie;
+        }
+
+        public static bool DoesGameHaveWinner(TicTacToeState state)
+        {
             var board = state.board;
-            // the board is filled but there is no winner
-            return IsGameOver(state) && board.All(x => x != PlayerMark.Empty);
+            var winningLines = new List<List<MovePosition>>
+            {
+                new List<MovePosition> { MovePosition.TopLeft, MovePosition.TopCenter, MovePosition.TopRight },
+                new List<MovePosition> { MovePosition.MiddleLeft, MovePosition.MiddleCenter, MovePosition.MiddleRight },
+                new List<MovePosition> { MovePosition.BottomLeft, MovePosition.BottomCenter, MovePosition.BottomRight },
+                new List<MovePosition> { MovePosition.TopLeft, MovePosition.MiddleLeft, MovePosition.BottomLeft },
+                new List<MovePosition> { MovePosition.TopCenter, MovePosition.MiddleCenter, MovePosition.BottomCenter },
+                new List<MovePosition> { MovePosition.TopRight, MovePosition.MiddleRight, MovePosition.BottomRight },
+                new List<MovePosition> { MovePosition.TopLeft, MovePosition.MiddleCenter, MovePosition.BottomRight },
+                new List<MovePosition> { MovePosition.BottomLeft, MovePosition.MiddleCenter, MovePosition.TopRight },
+            };
+
+            bool hasWinner = winningLines.Any( x => IsLineAllEqual(board, x[0], x[1], x[2]));
+            return hasWinner;
+        }
+
+        public static bool IsBoardFull(TicTacToeState state)
+        {
+            var isFull = state.board.All(x => x != PlayerMark.Empty);
+            return isFull;
         }
 
         public static MovePosition GetRandomPlayerMove()

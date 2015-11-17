@@ -8,21 +8,38 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using GameServer.Models.TicTacToe;
 using GameServer.Utilities;
+using System.ServiceModel.Description;
+using System.ServiceModel.Channels;
+using System.ServiceModel.Dispatcher;
 
 namespace GameServer.Services
 {
-    class BaseService : IInformationService, IGameService
+    public class BaseService : IInformationService, IGameService
     {
-        public void CreatePlayerAccount(string username, string password)
+        private IInformationService _infoController;
+        private IGameService _gameController;
+
+        public BaseService()
+        {
+            _gameController = Program.gameController;
+            _infoController = Program.infoController;
+        }
+
+        public BaseService(IGameService gameController, IInformationService infoController) 
+        {
+            _gameController = gameController;
+            _infoController = infoController;
+        }
+            
+        public PlayerStats GetPlayerStats(Guid playerId)
         {
             try
             {
-                Program.infoController.CreatePlayerAccount(username, password);
+                return _infoController.GetPlayerStats(playerId);
             }
-            catch (Exception e)
+            catch (EmptyResultsException e)
             {
-                var fault = new GameServerFault(e.Message);
-                throw new FaultException<GameServerFault>(fault);
+                throw new FaultException<EmptyResultsFault>(new EmptyResultsFault());
             }
         }
 
@@ -32,62 +49,21 @@ namespace GameServer.Services
             {
                 return Program.infoController.GetGameList();
             }
-            catch (Exception e)
+            catch (EmptyResultsException e)
             {
-                var fault = new GameServerFault(e.Message);
-                throw new FaultException<GameServerFault>(fault);
+                throw new FaultException<EmptyResultsFault>(new EmptyResultsFault());
             }
         }
 
-        public MatchState GetMatchState(Guid matchId)
+        public void CreatePlayerAccount(string username, string password)
         {
             try
             {
-                return Program.gameController.GetMatchState(matchId);
+                _infoController.CreatePlayerAccount(username, password);
             }
-            catch (Exception e)
+            catch (UsernameAlreadyExistsException ue)
             {
-                var fault = new GameServerFault(e.Message);
-                throw new FaultException<GameServerFault>(fault);
-            }
-        }
-
-        public PlayerStats GetPlayerStats(Guid playerId)
-        {
-            try
-            {
-                return Program.infoController.GetPlayerStats(playerId);
-            }
-            catch (Exception e)
-            {
-                var fault = new GameServerFault(e.Message);
-                throw new FaultException<GameServerFault>(fault);
-            }
-        }
-
-        public MatchState JoinGame(GameType type, Guid playerId)
-        {
-            try
-            {
-                return Program.gameController.JoinGame(type, playerId);
-            }
-            catch (Exception e)
-            {
-                var fault = new GameServerFault(e.Message);
-                throw new FaultException<GameServerFault>(fault);
-            }
-        }
-
-        public PlayerProfile LoginGuest()
-        {
-            try
-            {
-                return Program.infoController.LoginGuest();
-            }
-            catch (Exception e)
-            {
-                var fault = new GameServerFault(e.Message);
-                throw new FaultException<GameServerFault>(fault);
+                throw new FaultException<UsernameAlreadyExistsFault>(new UsernameAlreadyExistsFault());
             }
         }
 
@@ -95,25 +71,46 @@ namespace GameServer.Services
         {
             try
             {
-                return Program.infoController.LoginPlayer(username, password);
+                return _infoController.LoginPlayer(username, password);
             }
-            catch (Exception e)
+            catch (InvalidUsernameException ue)
             {
-                var fault = new GameServerFault(e.Message);
-                throw new FaultException<GameServerFault>(fault);
+                throw new FaultException<InvalidUsernameFault>(new InvalidUsernameFault());
             }
+            catch (InvalidPasswordException pe)
+            {
+                throw new FaultException<InvalidPasswordFault>(new InvalidPasswordFault());
+            }
+        }
+
+        public PlayerProfile LoginGuest()
+        {
+            return _infoController.LoginGuest();
         }
 
         public void LogoutPlayer(Guid playerId)
         {
+            _infoController.LogoutPlayer(playerId);
+        }
+
+        public MatchState JoinGame(GameType type, Guid playerId)
+        {
+            return _gameController.JoinGame(type, playerId);
+        }
+        
+        public void Quit(Guid matchId, Guid playerId)
+        {
             try
             {
-                Program.infoController.LogoutPlayer(playerId);
+                _gameController.Quit(matchId, playerId);
             }
-            catch (Exception e)
+            catch (PlayerNotInSpecifiedGameException e)
             {
-                var fault = new GameServerFault(e.Message);
-                throw new FaultException<GameServerFault>(fault);
+                throw new FaultException<PlayerNotInSpecifiedGameFault>(new PlayerNotInSpecifiedGameFault());
+            }
+            catch (EmptyResultsException e)
+            {
+                throw new FaultException<EmptyResultsFault>(new EmptyResultsFault());
             }
         }
 
@@ -121,25 +118,43 @@ namespace GameServer.Services
         {
             try
             {
-                return Program.gameController.PlayerMove(matchId, playerId, move);
+                return _gameController.PlayerMove(matchId, playerId, move);
             }
-            catch (Exception e)
+            catch (WaitingForPlayersException e)
             {
-                var fault = new GameServerFault(e.Message);
-                throw new FaultException<GameServerFault>(fault);
+                throw new FaultException<WaitingForPlayersFault>(new WaitingForPlayersFault());
+            }
+            catch (GameIsOverException e)
+            {
+                throw new FaultException<GameIsOverFault>(new GameIsOverFault());
+            }
+            catch (PlayerNotInSpecifiedGameException e)
+            {
+                throw new FaultException<PlayerNotInSpecifiedGameFault>(new PlayerNotInSpecifiedGameFault());
+            }
+            catch (NotPlayersTurnException e)
+            {
+                throw new FaultException<NotPlayersTurnFault>(new NotPlayersTurnFault());
+            }
+            catch (InvalidPlayerMoveException e)
+            {
+                throw new FaultException<InvalidPlayerMoveFault>(new InvalidPlayerMoveFault());
+            }
+            catch (EmptyResultsException e)
+            {
+                throw new FaultException<EmptyResultsFault>(new EmptyResultsFault());
             }
         }
 
-        public void Quit(Guid matchId, Guid playerId)
+        public MatchState GetMatchState(Guid matchId)
         {
             try
             {
-                Program.gameController.Quit(matchId, playerId);
+                return _gameController.GetMatchState(matchId);
             }
-            catch (Exception e)
+            catch (EmptyResultsException e)
             {
-                var fault = new GameServerFault(e.Message);
-                throw new FaultException<GameServerFault>(fault);
+                throw new FaultException<EmptyResultsFault>(new EmptyResultsFault());
             }
         }
     }

@@ -38,7 +38,7 @@ namespace GameClient.Server {
         private int totalWinsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private float winLossRationField;
+        private float winLossRatioField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -116,14 +116,14 @@ namespace GameClient.Server {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public float winLossRation {
+        public float winLossRatio {
             get {
-                return this.winLossRationField;
+                return this.winLossRatioField;
             }
             set {
-                if ((this.winLossRationField.Equals(value) != true)) {
-                    this.winLossRationField = value;
-                    this.RaisePropertyChanged("winLossRation");
+                if ((this.winLossRatioField.Equals(value) != true)) {
+                    this.winLossRatioField = value;
+                    this.RaisePropertyChanged("winLossRatio");
                 }
             }
         }
@@ -281,10 +281,22 @@ namespace GameClient.Server {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="GameServerFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(GameClient.Server.UsernameAlreadyExistsFault))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(GameClient.Server.InvalidUsernameFault))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(GameClient.Server.InvalidPasswordFault))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(GameClient.Server.PlayerNotInSpecifiedGameFault))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(GameClient.Server.WaitingForPlayersFault))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(GameClient.Server.GameIsOverFault))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(GameClient.Server.NotPlayersTurnFault))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(GameClient.Server.InvalidPlayerMoveFault))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(GameClient.Server.EmptyResultsFault))]
     public partial class GameServerFault : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string MessageField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -296,6 +308,19 @@ namespace GameClient.Server {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Message {
+            get {
+                return this.MessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
+                    this.MessageField = value;
+                    this.RaisePropertyChanged("Message");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -304,6 +329,69 @@ namespace GameClient.Server {
                 propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
             }
         }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UsernameAlreadyExistsFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
+    [System.SerializableAttribute()]
+    public partial class UsernameAlreadyExistsFault : GameClient.Server.GameServerFault {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="InvalidUsernameFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
+    [System.SerializableAttribute()]
+    public partial class InvalidUsernameFault : GameClient.Server.GameServerFault {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="InvalidPasswordFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
+    [System.SerializableAttribute()]
+    public partial class InvalidPasswordFault : GameClient.Server.GameServerFault {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PlayerNotInSpecifiedGameFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
+    [System.SerializableAttribute()]
+    public partial class PlayerNotInSpecifiedGameFault : GameClient.Server.GameServerFault {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="WaitingForPlayersFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
+    [System.SerializableAttribute()]
+    public partial class WaitingForPlayersFault : GameClient.Server.GameServerFault {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GameIsOverFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
+    [System.SerializableAttribute()]
+    public partial class GameIsOverFault : GameClient.Server.GameServerFault {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="NotPlayersTurnFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
+    [System.SerializableAttribute()]
+    public partial class NotPlayersTurnFault : GameClient.Server.GameServerFault {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="InvalidPlayerMoveFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
+    [System.SerializableAttribute()]
+    public partial class InvalidPlayerMoveFault : GameClient.Server.GameServerFault {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EmptyResultsFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
+    [System.SerializableAttribute()]
+    public partial class EmptyResultsFault : GameClient.Server.GameServerFault {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -762,42 +850,42 @@ namespace GameClient.Server {
     public interface IInformationService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInformationService/GetPlayerStats", ReplyAction="http://tempuri.org/IInformationService/GetPlayerStatsResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.GameServerFault), Action="http://tempuri.org/IInformationService/GetPlayerStatsGameServerFaultFault", Name="GameServerFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.EmptyResultsFault), Action="http://tempuri.org/IInformationService/GetPlayerStatsEmptyResultsFaultFault", Name="EmptyResultsFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
         GameClient.Server.PlayerStats GetPlayerStats(System.Guid playerId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInformationService/GetPlayerStats", ReplyAction="http://tempuri.org/IInformationService/GetPlayerStatsResponse")]
         System.Threading.Tasks.Task<GameClient.Server.PlayerStats> GetPlayerStatsAsync(System.Guid playerId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInformationService/GetGameList", ReplyAction="http://tempuri.org/IInformationService/GetGameListResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.GameServerFault), Action="http://tempuri.org/IInformationService/GetGameListGameServerFaultFault", Name="GameServerFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.EmptyResultsFault), Action="http://tempuri.org/IInformationService/GetGameListEmptyResultsFaultFault", Name="EmptyResultsFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
         GameClient.Server.GameInformation[] GetGameList();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInformationService/GetGameList", ReplyAction="http://tempuri.org/IInformationService/GetGameListResponse")]
         System.Threading.Tasks.Task<GameClient.Server.GameInformation[]> GetGameListAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInformationService/CreatePlayerAccount", ReplyAction="http://tempuri.org/IInformationService/CreatePlayerAccountResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.GameServerFault), Action="http://tempuri.org/IInformationService/CreatePlayerAccountGameServerFaultFault", Name="GameServerFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.UsernameAlreadyExistsFault), Action="http://tempuri.org/IInformationService/CreatePlayerAccountUsernameAlreadyExistsFa" +
+            "ultFault", Name="UsernameAlreadyExistsFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
         void CreatePlayerAccount(string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInformationService/CreatePlayerAccount", ReplyAction="http://tempuri.org/IInformationService/CreatePlayerAccountResponse")]
         System.Threading.Tasks.Task CreatePlayerAccountAsync(string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInformationService/LoginPlayer", ReplyAction="http://tempuri.org/IInformationService/LoginPlayerResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.GameServerFault), Action="http://tempuri.org/IInformationService/LoginPlayerGameServerFaultFault", Name="GameServerFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.InvalidUsernameFault), Action="http://tempuri.org/IInformationService/LoginPlayerInvalidUsernameFaultFault", Name="InvalidUsernameFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.InvalidPasswordFault), Action="http://tempuri.org/IInformationService/LoginPlayerInvalidPasswordFaultFault", Name="InvalidPasswordFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
         GameClient.Server.PlayerProfile LoginPlayer(string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInformationService/LoginPlayer", ReplyAction="http://tempuri.org/IInformationService/LoginPlayerResponse")]
         System.Threading.Tasks.Task<GameClient.Server.PlayerProfile> LoginPlayerAsync(string username, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInformationService/LoginGuest", ReplyAction="http://tempuri.org/IInformationService/LoginGuestResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.GameServerFault), Action="http://tempuri.org/IInformationService/LoginGuestGameServerFaultFault", Name="GameServerFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
         GameClient.Server.PlayerProfile LoginGuest();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInformationService/LoginGuest", ReplyAction="http://tempuri.org/IInformationService/LoginGuestResponse")]
         System.Threading.Tasks.Task<GameClient.Server.PlayerProfile> LoginGuestAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInformationService/LogoutPlayer", ReplyAction="http://tempuri.org/IInformationService/LogoutPlayerResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.GameServerFault), Action="http://tempuri.org/IInformationService/LogoutPlayerGameServerFaultFault", Name="GameServerFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
         void LogoutPlayer(System.Guid playerId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IInformationService/LogoutPlayer", ReplyAction="http://tempuri.org/IInformationService/LogoutPlayerResponse")]
@@ -885,28 +973,33 @@ namespace GameClient.Server {
     public interface IGameService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/JoinGame", ReplyAction="http://tempuri.org/IGameService/JoinGameResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.GameServerFault), Action="http://tempuri.org/IGameService/JoinGameGameServerFaultFault", Name="GameServerFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
         GameClient.Server.MatchState JoinGame(GameClient.Server.GameType type, System.Guid playerId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/JoinGame", ReplyAction="http://tempuri.org/IGameService/JoinGameResponse")]
         System.Threading.Tasks.Task<GameClient.Server.MatchState> JoinGameAsync(GameClient.Server.GameType type, System.Guid playerId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/Quit", ReplyAction="http://tempuri.org/IGameService/QuitResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.GameServerFault), Action="http://tempuri.org/IGameService/QuitGameServerFaultFault", Name="GameServerFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.PlayerNotInSpecifiedGameFault), Action="http://tempuri.org/IGameService/QuitPlayerNotInSpecifiedGameFaultFault", Name="PlayerNotInSpecifiedGameFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.EmptyResultsFault), Action="http://tempuri.org/IGameService/QuitEmptyResultsFaultFault", Name="EmptyResultsFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
         void Quit(System.Guid matchId, System.Guid playerId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/Quit", ReplyAction="http://tempuri.org/IGameService/QuitResponse")]
         System.Threading.Tasks.Task QuitAsync(System.Guid matchId, System.Guid playerId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/PlayerMove", ReplyAction="http://tempuri.org/IGameService/PlayerMoveResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.GameServerFault), Action="http://tempuri.org/IGameService/PlayerMoveGameServerFaultFault", Name="GameServerFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.WaitingForPlayersFault), Action="http://tempuri.org/IGameService/PlayerMoveWaitingForPlayersFaultFault", Name="WaitingForPlayersFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.GameIsOverFault), Action="http://tempuri.org/IGameService/PlayerMoveGameIsOverFaultFault", Name="GameIsOverFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.PlayerNotInSpecifiedGameFault), Action="http://tempuri.org/IGameService/PlayerMovePlayerNotInSpecifiedGameFaultFault", Name="PlayerNotInSpecifiedGameFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.NotPlayersTurnFault), Action="http://tempuri.org/IGameService/PlayerMoveNotPlayersTurnFaultFault", Name="NotPlayersTurnFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.InvalidPlayerMoveFault), Action="http://tempuri.org/IGameService/PlayerMoveInvalidPlayerMoveFaultFault", Name="InvalidPlayerMoveFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.EmptyResultsFault), Action="http://tempuri.org/IGameService/PlayerMoveEmptyResultsFaultFault", Name="EmptyResultsFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
         GameClient.Server.MatchState PlayerMove(System.Guid matchId, System.Guid playerId, GameClient.Server.MovePosition move);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/PlayerMove", ReplyAction="http://tempuri.org/IGameService/PlayerMoveResponse")]
         System.Threading.Tasks.Task<GameClient.Server.MatchState> PlayerMoveAsync(System.Guid matchId, System.Guid playerId, GameClient.Server.MovePosition move);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/GetMatchState", ReplyAction="http://tempuri.org/IGameService/GetMatchStateResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.GameServerFault), Action="http://tempuri.org/IGameService/GetMatchStateGameServerFaultFault", Name="GameServerFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
+        [System.ServiceModel.FaultContractAttribute(typeof(GameClient.Server.EmptyResultsFault), Action="http://tempuri.org/IGameService/GetMatchStateEmptyResultsFaultFault", Name="EmptyResultsFault", Namespace="http://schemas.datacontract.org/2004/07/GameServer.Utilities")]
         GameClient.Server.MatchState GetMatchState(System.Guid matchId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/GetMatchState", ReplyAction="http://tempuri.org/IGameService/GetMatchStateResponse")]

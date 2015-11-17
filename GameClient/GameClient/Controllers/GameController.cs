@@ -12,65 +12,36 @@ namespace GameClient.Controllers
     class GameController
     {
         private GameServiceClient _service;
-        private BasicObservable<MatchState> _gameState;
+        public BasicObservable<MatchState> gameState { get; private set; }
 
         public GameController(GameServiceClient service, BasicObservable<MatchState> state)
         {
             _service = service;
-            _gameState = state;
+            gameState = state;
         }
 
-        public void StartGame(GameType gameType, Guid playerId)
+        public void JoinGame(GameType gameType, Guid playerId)
         {
-            try
-            {
-                var newMatch = _service.JoinGame(gameType, playerId);
-                _gameState.Update(newMatch);
-            }
-            catch (FaultException<GameServerFault> fe) { }
-            catch (CommunicationException ce) { }
-            catch (TimeoutException te) { }
+            var newMatch = _service.JoinGame(gameType, playerId);
+            gameState.Update(newMatch);
         }
 
         public void QuitGame(Guid gameId, Guid playerId)
         {
-            try
-            {
-                _service.Quit(gameId, playerId);
-                _gameState.Destroy();
-            }
-            catch (FaultException<GameServerFault> fe) { }
-            catch (CommunicationException ce) { }
-            catch (TimeoutException te) { }
+            _service.Quit(gameId, playerId);
+            gameState.Destroy();
         }
 
         public void PlayerMove(Guid matchId, Guid playerId, MovePosition move)
         {
-            try
-            {
-                var matchState = _service.PlayerMove(matchId, playerId, move);
-                UpdateGame(matchState);
-            }
-            catch (FaultException<GameServerFault> fe) { }
-            catch (CommunicationException ce) { }
-            catch (TimeoutException te) { }
+            var matchState = _service.PlayerMove(matchId, playerId, move);
+            gameState.Update(matchState);
         }
 
-        public void GetMatchState(Guid matchId)
+        public void UpdateMatchState(Guid matchId)
         {
-            try
-            {
-                var matchState = _service.GetMatchState(matchId);
-                UpdateGame(matchState);
-            }
-            catch (FaultException<GameServerFault> fe) { }
-            catch (CommunicationException ce) { }
-            catch (TimeoutException te) { }
-        }
-
-        public void UpdateGame(MatchState updatedMatchState)
-        {
-            _gameState.Update(updatedMatchState);
+            var matchState = _service.GetMatchState(matchId);
+            gameState.Update(matchState);
         }
     }
 }

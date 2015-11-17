@@ -20,15 +20,15 @@
           </Key>
           <Property Name="id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="winner_id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="game_type" Type="int" Nullable="false" />
           <Property Name="game_start_time" Type="datetime" Nullable="false" />
           <Property Name="game_end_time" Type="datetime" Nullable="false" />
-          <Property Name="game_type" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="MatchPlayer">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="match_id" />
+            <PropertyRef Name="player_id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
           <Property Name="match_id" Type="uniqueidentifier" Nullable="false" />
           <Property Name="player_id" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
@@ -50,7 +50,7 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <Association Name="FK_Match_GameInformation">
+        <Association Name="FK_Match_Game">
           <End Role="Game" Type="Self.Game" Multiplicity="1" />
           <End Role="Match" Type="Self.Match" Multiplicity="*" />
           <ReferentialConstraint>
@@ -59,6 +59,18 @@
             </Principal>
             <Dependent Role="Match">
               <PropertyRef Name="game_type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Match_Player">
+          <End Role="Player" Type="Self.Player" Multiplicity="1" />
+          <End Role="Match" Type="Self.Match" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Match">
+              <PropertyRef Name="winner_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -92,8 +104,12 @@
           <EntitySet Name="MatchPlayer" EntityType="Self.MatchPlayer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Player" EntityType="Self.Player" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Match_GameInformation" Association="Self.FK_Match_GameInformation">
+          <AssociationSet Name="FK_Match_Game" Association="Self.FK_Match_Game">
             <End Role="Game" EntitySet="Game" />
+            <End Role="Match" EntitySet="Match" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Match_Player" Association="Self.FK_Match_Player">
+            <End Role="Player" EntitySet="Player" />
             <End Role="Match" EntitySet="Match" />
           </AssociationSet>
           <AssociationSet Name="FK_MatchPlayer_Match" Association="Self.FK_MatchPlayer_Match">
@@ -118,7 +134,7 @@
           <Property Name="number_of_players" Type="Int32" Nullable="false" />
           <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Matches" Relationship="Self.FK_Match_GameInformation" FromRole="Game" ToRole="Match" />
+          <NavigationProperty Name="Matches" Relationship="Self.FK_Match_Game" FromRole="Game" ToRole="Match" />
         </EntityType>
         <EntityType Name="Match">
           <Key>
@@ -126,21 +142,12 @@
           </Key>
           <Property Name="id" Type="Guid" Nullable="false" />
           <Property Name="winner_id" Type="Guid" Nullable="false" />
+          <Property Name="game_type" Type="Int32" Nullable="false" />
           <Property Name="game_start_time" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="game_end_time" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="game_type" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Game" Relationship="Self.FK_Match_GameInformation" FromRole="Match" ToRole="Game" />
-          <NavigationProperty Name="MatchPlayers" Relationship="Self.FK_MatchPlayer_Match" FromRole="Match" ToRole="MatchPlayer" />
-        </EntityType>
-        <EntityType Name="MatchPlayer">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="match_id" Type="Guid" Nullable="false" />
-          <Property Name="player_id" Type="Guid" Nullable="false" />
-          <NavigationProperty Name="Match" Relationship="Self.FK_MatchPlayer_Match" FromRole="MatchPlayer" ToRole="Match" />
-          <NavigationProperty Name="Player" Relationship="Self.FK_MatchPlayer_Player" FromRole="MatchPlayer" ToRole="Player" />
+          <NavigationProperty Name="Game" Relationship="Self.FK_Match_Game" FromRole="Match" ToRole="Game" />
+          <NavigationProperty Name="Player" Relationship="Self.FK_Match_Player" FromRole="Match" ToRole="Player" />
+          <NavigationProperty Name="Players" Relationship="Self.MatchPlayer" FromRole="Match" ToRole="Player" />
         </EntityType>
         <EntityType Name="Player">
           <Key>
@@ -149,7 +156,8 @@
           <Property Name="id" Type="Guid" Nullable="false" />
           <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="MatchPlayers" Relationship="Self.FK_MatchPlayer_Player" FromRole="Player" ToRole="MatchPlayer" />
+          <NavigationProperty Name="Matches" Relationship="Self.FK_Match_Player" FromRole="Player" ToRole="Match" />
+          <NavigationProperty Name="Matches1" Relationship="Self.MatchPlayer" FromRole="Player" ToRole="Match" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -161,7 +169,7 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <Association Name="FK_Match_GameInformation">
+        <Association Name="FK_Match_Game">
           <End Role="Game" Type="Self.Game" Multiplicity="1" />
           <End Role="Match" Type="Self.Match" Multiplicity="*" />
           <ReferentialConstraint>
@@ -173,47 +181,38 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_MatchPlayer_Match">
-          <End Role="Match" Type="Self.Match" Multiplicity="1" />
-          <End Role="MatchPlayer" Type="Self.MatchPlayer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Match">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="MatchPlayer">
-              <PropertyRef Name="match_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_MatchPlayer_Player">
+        <Association Name="FK_Match_Player">
           <End Role="Player" Type="Self.Player" Multiplicity="1" />
-          <End Role="MatchPlayer" Type="Self.MatchPlayer" Multiplicity="*" />
+          <End Role="Match" Type="Self.Match" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Player">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="MatchPlayer">
-              <PropertyRef Name="player_id" />
+            <Dependent Role="Match">
+              <PropertyRef Name="winner_id" />
             </Dependent>
           </ReferentialConstraint>
+        </Association>
+        <Association Name="MatchPlayer">
+          <End Role="Match" Type="Self.Match" Multiplicity="*" />
+          <End Role="Player" Type="Self.Player" Multiplicity="*" />
         </Association>
         <EntityContainer Name="GameServerEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Games" EntityType="Self.Game" />
           <EntitySet Name="Matches" EntityType="Self.Match" />
-          <EntitySet Name="MatchPlayers" EntityType="Self.MatchPlayer" />
           <EntitySet Name="Players" EntityType="Self.Player" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <AssociationSet Name="FK_Match_GameInformation" Association="Self.FK_Match_GameInformation">
+          <AssociationSet Name="FK_Match_Game" Association="Self.FK_Match_Game">
             <End Role="Game" EntitySet="Games" />
             <End Role="Match" EntitySet="Matches" />
           </AssociationSet>
-          <AssociationSet Name="FK_MatchPlayer_Match" Association="Self.FK_MatchPlayer_Match">
-            <End Role="Match" EntitySet="Matches" />
-            <End Role="MatchPlayer" EntitySet="MatchPlayers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_MatchPlayer_Player" Association="Self.FK_MatchPlayer_Player">
+          <AssociationSet Name="FK_Match_Player" Association="Self.FK_Match_Player">
             <End Role="Player" EntitySet="Players" />
-            <End Role="MatchPlayer" EntitySet="MatchPlayers" />
+            <End Role="Match" EntitySet="Matches" />
+          </AssociationSet>
+          <AssociationSet Name="MatchPlayer" Association="Self.MatchPlayer">
+            <End Role="Match" EntitySet="Matches" />
+            <End Role="Player" EntitySet="Players" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -237,18 +236,9 @@
               <MappingFragment StoreEntitySet="Match">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="winner_id" ColumnName="winner_id" />
+                <ScalarProperty Name="game_type" ColumnName="game_type" />
                 <ScalarProperty Name="game_start_time" ColumnName="game_start_time" />
                 <ScalarProperty Name="game_end_time" ColumnName="game_end_time" />
-                <ScalarProperty Name="game_type" ColumnName="game_type" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="MatchPlayers">
-            <EntityTypeMapping TypeName="GameServerModel.MatchPlayer">
-              <MappingFragment StoreEntitySet="MatchPlayer">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="match_id" ColumnName="match_id" />
-                <ScalarProperty Name="player_id" ColumnName="player_id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -272,6 +262,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="MatchPlayer" TypeName="GameServerModel.MatchPlayer" StoreEntitySet="MatchPlayer">
+            <EndProperty Name="Match">
+              <ScalarProperty Name="id" ColumnName="match_id" />
+            </EndProperty>
+            <EndProperty Name="Player">
+              <ScalarProperty Name="id" ColumnName="player_id" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

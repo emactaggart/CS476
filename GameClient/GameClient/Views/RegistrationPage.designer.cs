@@ -28,70 +28,75 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.UsernameField = new System.Windows.Forms.TextBox();
+            this.PasswordField = new System.Windows.Forms.TextBox();
+            this.PasswordConfirmationField = new System.Windows.Forms.TextBox();
+            this.RegisterButton = new System.Windows.Forms.Button();
+            this.BackButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // textBox1
+            // UsernameField
             // 
-            this.textBox1.Location = new System.Drawing.Point(74, 47);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "Username";
+            this.UsernameField.Location = new System.Drawing.Point(99, 58);
+            this.UsernameField.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.UsernameField.Name = "UsernameField";
+            this.UsernameField.Size = new System.Drawing.Size(132, 22);
+            this.UsernameField.TabIndex = 0;
+            this.UsernameField.Text = "Username";
             // 
-            // textBox2
+            // PasswordField
             // 
-            this.textBox2.Location = new System.Drawing.Point(74, 73);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 1;
-            this.textBox2.Text = "Password";
+            this.PasswordField.Location = new System.Drawing.Point(99, 90);
+            this.PasswordField.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PasswordField.Name = "PasswordField";
+            this.PasswordField.Size = new System.Drawing.Size(132, 22);
+            this.PasswordField.TabIndex = 1;
+            this.PasswordField.Text = "Password";
             // 
-            // textBox3
+            // PasswordConfirmationField
             // 
-            this.textBox3.Location = new System.Drawing.Point(74, 99);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 2;
-            this.textBox3.Text = "Confirm Password";
+            this.PasswordConfirmationField.Location = new System.Drawing.Point(99, 122);
+            this.PasswordConfirmationField.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PasswordConfirmationField.Name = "PasswordConfirmationField";
+            this.PasswordConfirmationField.Size = new System.Drawing.Size(132, 22);
+            this.PasswordConfirmationField.TabIndex = 2;
+            this.PasswordConfirmationField.Text = "Confirm Password";
             // 
-            // button1
+            // RegisterButton
             // 
-            this.button1.Location = new System.Drawing.Point(84, 125);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Register";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.RegisterButton.Location = new System.Drawing.Point(99, 171);
+            this.RegisterButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RegisterButton.Name = "RegisterButton";
+            this.RegisterButton.Size = new System.Drawing.Size(132, 52);
+            this.RegisterButton.TabIndex = 3;
+            this.RegisterButton.Text = "Register";
+            this.RegisterButton.UseVisualStyleBackColor = true;
+            this.RegisterButton.Click += new System.EventHandler(this.RegisterButton_Click);
             // 
-            // button2
+            // BackButton
             // 
-            this.button2.Location = new System.Drawing.Point(84, 154);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "back";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.BackButton.Location = new System.Drawing.Point(99, 231);
+            this.BackButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BackButton.Name = "BackButton";
+            this.BackButton.Size = new System.Drawing.Size(132, 52);
+            this.BackButton.TabIndex = 4;
+            this.BackButton.Text = "Back";
+            this.BackButton.UseVisualStyleBackColor = true;
+            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
             // 
-            // Registration
+            // RegistrationPage
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Name = "Registration";
-            this.Text = "Registration";
-            this.Load += new System.EventHandler(this.Registration_Load);
+            this.ClientSize = new System.Drawing.Size(379, 321);
+            this.Controls.Add(this.BackButton);
+            this.Controls.Add(this.RegisterButton);
+            this.Controls.Add(this.PasswordConfirmationField);
+            this.Controls.Add(this.PasswordField);
+            this.Controls.Add(this.UsernameField);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Name = "RegistrationPage";
+            this.Text = "Register an Account!";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -99,10 +104,10 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox UsernameField;
+        private System.Windows.Forms.TextBox PasswordField;
+        private System.Windows.Forms.TextBox PasswordConfirmationField;
+        private System.Windows.Forms.Button RegisterButton;
+        private System.Windows.Forms.Button BackButton;
     }
 }

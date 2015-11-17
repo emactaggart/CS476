@@ -1,4 +1,5 @@
 ﻿using GameServer.Models;
+using GameServer.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,13 @@ namespace GameServer.Data
         {
             using (var context = new GameServerEntities())
             {
+                var players = context.Players.Where(x => matchState.players.Contains(x.id)).ToList();
                 var matchRow = ModelConverter.ToRow.GetMatchFromMatchState(matchState);
+                if (players.Count == 0)
+                {
+                    throw new EmptyResultsException();
+                }
+                matchRow.Players = players;
                 context.Matches.Add(matchRow);
                 context.SaveChanges();
             }
@@ -24,7 +31,10 @@ namespace GameServer.Data
             using (var context = new GameServerEntities())
             {
                 var dataList = context.Games.ToList();
-
+                if (dataList.Count == 0)
+                {
+                    throw new EmptyResultsException();
+                }
                 var infoList = dataList
                     .Select(x => ModelConverter.FromRow.GetGameInformationFromGame(x))
                     .ToList();
@@ -36,17 +46,25 @@ namespace GameServer.Data
         {
             using (var context = new GameServerEntities())
             {
-                var playerRow = context.Players.Single(x => x.username == username);
+                var playerRow = context.Players.FirstOrDefault(x => x.username == username);
+                if (playerRow == null)
+                {
+                    throw new InvalidUsernameException();
+                }
                 var profile = ModelConverter.FromRow.GetPlayerProfileFromPlayer(playerRow);
                 return profile;
             }
         }
 
-        public string RetreivePlayerPasswordById(Guid playerId)
+        public string RetrievePlayerPasswordById(Guid playerId)
         {
             using (var context = new GameServerEntities())
             {
                 var playerRow = context.Players.Single(x => x.id == playerId);
+                if (playerRow.Equals(null))
+                {
+                    throw new EmptyResultsException();
+                }
                 return playerRow.password;
             }
         }
@@ -55,9 +73,12 @@ namespace GameServer.Data
         {
             using (var context = new GameServerEntities())
             {
-                var matches = context.Matches.ToList();
-                var matchPlayers = context.MatchPlayers.ToList();
-                var resultList = ModelConverter.FromRow.GetMatchResultsFromMatches(matches, matchPlayers);
+                var matches = context.Matches.Where(x => x.Players.Select(y => y.id).Contains(playerId)).ToList();
+                var resultList = new List<MatchResult>();
+                if (matches.Count() != 0)
+                {
+                    resultList = ModelConverter.FromRow.GetMatchResultsFromMatches(matches);
+                } 
                 return resultList;
             }
         }
@@ -83,6 +104,10 @@ namespace GameServer.Data
             using (var context = new GameServerEntities())
             {
                 var usernames = context.Players.ToList().Select(x => x.username).ToList();
+                if (usernames.Count == 0)
+                {
+                    throw new EmptyResultsException();
+                }
                 if (usernames.Contains(username))
                 {
                     return true;

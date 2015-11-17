@@ -6,14 +6,12 @@ using System.Threading.Tasks;
 
 namespace GameClient.Utilities
 {
-    class BasicObserver<T> : IObserver<T>
+    public class BasicObserver<T> : IObserver<T>
     {
         private IDisposable _disposable;
         private T _data;
 
-        public BasicObserver()
-        {
-        }
+        public BasicObserver() { }
 
         public T GetValue()
         {
@@ -41,6 +39,11 @@ namespace GameClient.Utilities
         public void OnNext(T value)
         {
             _data = value;
+        }
+
+        public void Dispose()
+        {
+            _disposable.Dispose();
         }
     }
 }

@@ -10,30 +10,29 @@ using System.Threading.Tasks;
 namespace GameServer.Services
 {
     [ServiceContract]
-    interface IInformationService
+    public interface IInformationService
     {
         [OperationContract]
-        [FaultContract(typeof(GameServerFault))]
+        [FaultContract(typeof(EmptyResultsFault))]
         PlayerStats GetPlayerStats(Guid playerId);
 
         [OperationContract]
-        [FaultContract(typeof(GameServerFault))]
+        [FaultContract(typeof(EmptyResultsFault))]
         List<GameInformation> GetGameList();
 
         [OperationContract]
-        [FaultContract(typeof(GameServerFault))]
+        [FaultContract(typeof(UsernameAlreadyExistsFault))]
         void CreatePlayerAccount(string username, string password);
 
         [OperationContract]
-        [FaultContract(typeof(GameServerFault))]
+        [FaultContract(typeof(InvalidUsernameFault))]
+        [FaultContract(typeof(InvalidPasswordFault))]
         PlayerProfile LoginPlayer(string username, string password);
 
         [OperationContract]
-        [FaultContract(typeof(GameServerFault))]
         PlayerProfile LoginGuest();
 
         [OperationContract]
-        [FaultContract(typeof(GameServerFault))]
         void LogoutPlayer(Guid playerId);
     }
 }

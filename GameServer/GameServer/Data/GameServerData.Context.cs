@@ -27,7 +27,6 @@ namespace GameServer.Data
     
         public virtual DbSet<Game> Games { get; set; }
         public virtual DbSet<Match> Matches { get; set; }
-        public virtual DbSet<MatchPlayer> MatchPlayers { get; set; }
         public virtual DbSet<Player> Players { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }

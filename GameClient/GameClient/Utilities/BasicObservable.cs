@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 
 namespace GameClient.Utilities
 {
-    class BasicObservable<T> : IObservable<T>
+    public class BasicObservable<T> : IObservable<T>
     {
-        private T _data;
+        public T data { get; private set; }
         private List<IObserver<T>> _observerList;
 
         public BasicObservable(T data)
         {
-            _data = data;
+            this.data = data;
             _observerList = new List<IObserver<T>>();
         }
 
         public IDisposable Subscribe(IObserver<T> observer)
         {
-            if (_observerList.Contains(observer))
+            if (!_observerList.Contains(observer))
             {
                 _observerList.Add(observer);
                 Notify();
@@ -29,18 +29,19 @@ namespace GameClient.Utilities
 
         public void Update(T data)
         {
-            _data = data;
+            this.data = data;
             Notify();
         }
 
         public void Notify()
         {
-            _observerList.ForEach(x => x.OnNext(_data));
+            _observerList.ForEach(x => x.OnNext(data));
         }
 
         public void Destroy()
         {
             _observerList.RemoveAll(_ => true);
+            data = default(T);
         }
     }
 }

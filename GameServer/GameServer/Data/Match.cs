@@ -17,17 +17,18 @@ namespace GameServer.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Match()
         {
-            this.MatchPlayers = new HashSet<MatchPlayer>();
+            this.Players = new HashSet<Player>();
         }
     
         public System.Guid id { get; set; }
         public System.Guid winner_id { get; set; }
+        public int game_type { get; set; }
         public System.DateTime game_start_time { get; set; }
         public System.DateTime game_end_time { get; set; }
-        public int game_type { get; set; }
     
         public virtual Game Game { get; set; }
+        public virtual Player Player { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MatchPlayer> MatchPlayers { get; set; }
+        public virtual ICollection<Player> Players { get; set; }
     }
 }

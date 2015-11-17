@@ -10,7 +10,7 @@
       <xs:element minOccurs="0" name="totalGames" type="xs:int" />
       <xs:element minOccurs="0" name="totalLosses" type="xs:int" />
       <xs:element minOccurs="0" name="totalWins" type="xs:int" />
-      <xs:element minOccurs="0" name="winLossRation" type="xs:float" />
+      <xs:element minOccurs="0" name="winLossRatio" type="xs:float" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="PlayerStats" nillable="true" type="tns:PlayerStats" />

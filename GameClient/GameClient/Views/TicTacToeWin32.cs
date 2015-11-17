@@ -67,117 +67,117 @@ namespace TicTacToeWin32
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.but1 = new System.Windows.Forms.Button();
-			this.but2 = new System.Windows.Forms.Button();
-			this.but3 = new System.Windows.Forms.Button();
-			this.but4 = new System.Windows.Forms.Button();
-			this.but5 = new System.Windows.Forms.Button();
-			this.but6 = new System.Windows.Forms.Button();
-			this.but7 = new System.Windows.Forms.Button();
-			this.but8 = new System.Windows.Forms.Button();
-			this.but9 = new System.Windows.Forms.Button();
-			this.butPlay = new System.Windows.Forms.Button();
-			this.SuspendLayout();
-			// 
-			// but1
-			// 
-			this.but1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.but1.Location = new System.Drawing.Point(24, 16);
-			this.but1.Name = "but1";
-			this.but1.Size = new System.Drawing.Size(50, 50);
-			this.but1.TabIndex = 0;
-			// 
-			// but2
-			// 
-			this.but2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.but2.Location = new System.Drawing.Point(72, 16);
-			this.but2.Name = "but2";
-			this.but2.Size = new System.Drawing.Size(50, 50);
-			this.but2.TabIndex = 1;
-			// 
-			// but3
-			// 
-			this.but3.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.but3.Location = new System.Drawing.Point(120, 16);
-			this.but3.Name = "but3";
-			this.but3.Size = new System.Drawing.Size(50, 50);
-			this.but3.TabIndex = 2;
-			// 
-			// but4
-			// 
-			this.but4.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.but4.Location = new System.Drawing.Point(24, 64);
-			this.but4.Name = "but4";
-			this.but4.Size = new System.Drawing.Size(50, 50);
-			this.but4.TabIndex = 3;
-			// 
-			// but5
-			// 
-			this.but5.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.but5.Location = new System.Drawing.Point(72, 64);
-			this.but5.Name = "but5";
-			this.but5.Size = new System.Drawing.Size(50, 50);
-			this.but5.TabIndex = 4;
-			// 
-			// but6
-			// 
-			this.but6.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.but6.Location = new System.Drawing.Point(120, 64);
-			this.but6.Name = "but6";
-			this.but6.Size = new System.Drawing.Size(50, 50);
-			this.but6.TabIndex = 5;
-			// 
-			// but7
-			// 
-			this.but7.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.but7.Location = new System.Drawing.Point(24, 112);
-			this.but7.Name = "but7";
-			this.but7.Size = new System.Drawing.Size(50, 50);
-			this.but7.TabIndex = 6;
-			// 
-			// but8
-			// 
-			this.but8.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.but8.Location = new System.Drawing.Point(72, 112);
-			this.but8.Name = "but8";
-			this.but8.Size = new System.Drawing.Size(50, 50);
-			this.but8.TabIndex = 7;
-			// 
-			// but9
-			// 
-			this.but9.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((System.Byte)(0)));
-			this.but9.Location = new System.Drawing.Point(120, 112);
-			this.but9.Name = "but9";
-			this.but9.Size = new System.Drawing.Size(50, 50);
-			this.but9.TabIndex = 8;
-			// 
-			// butPlay
-			// 
-			this.butPlay.Location = new System.Drawing.Point(56, 176);
-			this.butPlay.Name = "butPlay";
-			this.butPlay.TabIndex = 9;
-			this.butPlay.Text = "Play";
-			this.butPlay.Click += new System.EventHandler(this.butPlay_Click);
-			// 
-			// Form1
-			// 
-			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-			this.ClientSize = new System.Drawing.Size(192, 213);
-			this.Controls.AddRange(new System.Windows.Forms.Control[] {
-																		  this.butPlay,
-																		  this.but9,
-																		  this.but8,
-																		  this.but7,
-																		  this.but6,
-																		  this.but5,
-																		  this.but4,
-																		  this.but3,
-																		  this.but2,
-																		  this.but1});
-			this.Name = "Form1";
-			this.Text = "Tic Tac Toe for Windows Forms";
-			this.Load += new System.EventHandler(this.Form1_Load);
-			this.ResumeLayout(false);
+            this.but1 = new System.Windows.Forms.Button();
+            this.but2 = new System.Windows.Forms.Button();
+            this.but3 = new System.Windows.Forms.Button();
+            this.but4 = new System.Windows.Forms.Button();
+            this.but5 = new System.Windows.Forms.Button();
+            this.but6 = new System.Windows.Forms.Button();
+            this.but7 = new System.Windows.Forms.Button();
+            this.but8 = new System.Windows.Forms.Button();
+            this.but9 = new System.Windows.Forms.Button();
+            this.butPlay = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // but1
+            // 
+            this.but1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.but1.Location = new System.Drawing.Point(29, 18);
+            this.but1.Name = "but1";
+            this.but1.Size = new System.Drawing.Size(60, 58);
+            this.but1.TabIndex = 0;
+            // 
+            // but2
+            // 
+            this.but2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.but2.Location = new System.Drawing.Point(86, 18);
+            this.but2.Name = "but2";
+            this.but2.Size = new System.Drawing.Size(60, 58);
+            this.but2.TabIndex = 1;
+            // 
+            // but3
+            // 
+            this.but3.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.but3.Location = new System.Drawing.Point(144, 18);
+            this.but3.Name = "but3";
+            this.but3.Size = new System.Drawing.Size(60, 58);
+            this.but3.TabIndex = 2;
+            // 
+            // but4
+            // 
+            this.but4.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.but4.Location = new System.Drawing.Point(29, 74);
+            this.but4.Name = "but4";
+            this.but4.Size = new System.Drawing.Size(60, 58);
+            this.but4.TabIndex = 3;
+            // 
+            // but5
+            // 
+            this.but5.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.but5.Location = new System.Drawing.Point(86, 74);
+            this.but5.Name = "but5";
+            this.but5.Size = new System.Drawing.Size(60, 58);
+            this.but5.TabIndex = 4;
+            // 
+            // but6
+            // 
+            this.but6.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.but6.Location = new System.Drawing.Point(144, 74);
+            this.but6.Name = "but6";
+            this.but6.Size = new System.Drawing.Size(60, 58);
+            this.but6.TabIndex = 5;
+            // 
+            // but7
+            // 
+            this.but7.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.but7.Location = new System.Drawing.Point(29, 129);
+            this.but7.Name = "but7";
+            this.but7.Size = new System.Drawing.Size(60, 58);
+            this.but7.TabIndex = 6;
+            // 
+            // but8
+            // 
+            this.but8.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.but8.Location = new System.Drawing.Point(86, 129);
+            this.but8.Name = "but8";
+            this.but8.Size = new System.Drawing.Size(60, 58);
+            this.but8.TabIndex = 7;
+            // 
+            // but9
+            // 
+            this.but9.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.but9.Location = new System.Drawing.Point(144, 129);
+            this.but9.Name = "but9";
+            this.but9.Size = new System.Drawing.Size(60, 58);
+            this.but9.TabIndex = 8;
+            // 
+            // butPlay
+            // 
+            this.butPlay.Location = new System.Drawing.Point(67, 203);
+            this.butPlay.Name = "butPlay";
+            this.butPlay.Size = new System.Drawing.Size(90, 27);
+            this.butPlay.TabIndex = 9;
+            this.butPlay.Text = "Play";
+            this.butPlay.Click += new System.EventHandler(this.butPlay_Click);
+            // 
+            // Form1
+            // 
+            this.AutoScaleBaseSize = new System.Drawing.Size(6, 15);
+            this.ClientSize = new System.Drawing.Size(337, 243);
+            this.Controls.Add(this.butPlay);
+            this.Controls.Add(this.but9);
+            this.Controls.Add(this.but8);
+            this.Controls.Add(this.but7);
+            this.Controls.Add(this.but6);
+            this.Controls.Add(this.but5);
+            this.Controls.Add(this.but4);
+            this.Controls.Add(this.but3);
+            this.Controls.Add(this.but2);
+            this.Controls.Add(this.but1);
+            this.Name = "Form1";
+            this.Text = "Tic Tac Toe for Windows Forms";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.ResumeLayout(false);
 
 		}
 		#endregion

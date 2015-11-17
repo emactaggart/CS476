@@ -12,88 +12,50 @@ namespace GameClient.Controllers
     class InformationController
     {
         private InformationServiceClient _service;
-        private BasicObservable<PlayerStats> _stats;
-        private PlayerProfile _profile;
-        private BasicObservable<List<GameInformation>> _gameList;
+        public PlayerStats stats { get; private set; }
+        public PlayerProfile profile { get; private set; }
+        public List<GameInformation> gameList { get; private set; }
 
         public InformationController(InformationServiceClient service, 
                 PlayerProfile profile, 
-                BasicObservable<PlayerStats> stats, 
-                BasicObservable<List<GameInformation>> gameList)
+                PlayerStats stats, 
+                List<GameInformation> gameList)
         {
             _service = service;
-            _stats = stats;
-            _profile = profile;
-            _gameList = gameList;
+            this.stats = stats;
+            this.profile = profile;
+            this.gameList = gameList;
         }
 
-        public void GetPlayerStats(Guid playerId)
+        public void GetPlayerStats()
         {
-            try
-            {
-                PlayerStats stats = _service.GetPlayerStats(playerId);
-                _stats.Update(stats);
-            }
-            catch (FaultException<GameServerFault> fe) { }
-            catch (CommunicationException ce) { }
-            catch (TimeoutException te) { }
+            this.stats = _service.GetPlayerStats(this.profile.id);
         }
 
         public void GetGameList()
         {
-            try
-            {
-                List<GameInformation> gameList = _service.GetGameList().ToList();
-                _gameList.Update(gameList);
-            }
-            catch (FaultException<GameServerFault> fe) { }
-            catch (CommunicationException ce) { }
-            catch (TimeoutException te) { }
+            this.gameList = _service.GetGameList().ToList();
         }
 
         public void CreateAccount(string username, string password)
         {
-            try
-            {
-                _service.CreatePlayerAccount(username, password);
-            }
-            catch (FaultException<GameServerFault> fe) { }
-            catch (CommunicationException ce) { }
-            catch (TimeoutException te) { }
+            _service.CreatePlayerAccount(username, password);
         }
 
-        public void LogingPlayer(string username, string password)
+        public void LoginPlayer(string username, string password)
         {
-            try
-            {
-                _profile = _service.LoginPlayer(username, password);
-            }
-            catch (FaultException<GameServerFault> fe) { }
-            catch (CommunicationException ce) { }
-            catch (TimeoutException te) { }
+            profile = _service.LoginPlayer(username, password);
         }
 
-        public void LogingGuest()
+        public void LoginGuest()
         {
-            try
-            {
-                _profile = _service.LoginGuest();
-            }
-            catch (FaultException<GameServerFault> fe) { }
-            catch (CommunicationException ce) { }
-            catch (TimeoutException te) { }
+            profile = _service.LoginGuest();
         }
 
         public void LogoutPlayer(Guid playerId)
         {
-            try
-            {
-                _service.LogoutPlayer(playerId);
-                _profile = new PlayerProfile { id = Guid.Parse("00000000-0000-0000-0000-000000000000"), username = "null" };
-            }
-            catch (FaultException<GameServerFault> fe) { }
-            catch (CommunicationException ce) { }
-            catch (TimeoutException te) { }
+            _service.LogoutPlayer(playerId);
+            profile = new PlayerProfile { id = Guid.Empty, username = "null" };
         }
     }
 }

@@ -67,19 +67,16 @@
       <DependentUpon>GameServerData.Context.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\GameServerData.cs">
-      <DependentUpon>GameServerData.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GameServerData.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\GameServerData.Designer.cs">
-      <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
       <DependentUpon>GameServerData.edmx</DependentUpon>
     </Compile>
     <Compile Include="Data\Match.cs">
-      <DependentUpon>GameServerData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Data\MatchPlayer.cs">
       <DependentUpon>GameServerData.tt</DependentUpon>
     </Compile>
     <Compile Include="Data\ModelConverter.cs" />
@@ -120,13 +117,6 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
   <ItemGroup>
     <Content Include="Data\GameServerData.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -135,9 +125,15 @@
     </Content>
     <Content Include="Data\GameServerData.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>GameServerData.cs</LastGenOutput>
       <DependentUpon>GameServerData.edmx</DependentUpon>
+      <LastGenOutput>GameServerData.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

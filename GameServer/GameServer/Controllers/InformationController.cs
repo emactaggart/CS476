@@ -1,6 +1,7 @@
 ﻿using GameServer.Data;
 using GameServer.Models;
 using GameServer.Services;
+using GameServer.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,30 +10,57 @@ using System.Threading.Tasks;
 
 namespace GameServer.Controllers
 {
-    class InformationController : IInformationService
+    public class InformationController : IInformationService
     {
         private DataController _dataController;
+        private List<PlayerProfile> _onlinePlayers;
 
-        public InformationController(DataController data)
+        public InformationController(DataController data, List<PlayerProfile> players)
         {
             _dataController = data;
+            _onlinePlayers = players;
         }
 
         public PlayerStats GetPlayerStats(Guid playerId)
         {
             var list = _dataController.RetrieveAllMatchesByPlayerId(playerId);
-            var totals = list.Count();
-            var wins = list.Count(x => x.winnerId == playerId);
-            var losses = list.Count() - list.Count(x => x.winnerId == playerId);
-            return new PlayerStats
+            if (list.Count == 0)
             {
-                playerId = playerId,
-                gameHistory = list,
-                totalGames = totals,
-                totalWins = wins,
-                totalLosses = losses,
-                winLossRation = (float)wins / (float)losses,
-            };
+                return new PlayerStats
+                {
+                    playerId = playerId,
+                    gameHistory = list,
+                    totalGames = 0,
+                    totalWins = 0,
+                    totalLosses = 0,
+                    winLossRatio = 0,
+                };
+            }
+            else 
+            {
+                var totals = list.Count();
+                var wins = list.Count(x => x.winnerId == playerId);
+                var losses = list.Count() - list.Count(x => x.winnerId == playerId);
+                float ratio;
+                if (losses == 0)
+                {
+                    ratio = 1;
+                }
+                else
+                {
+                    ratio = (float)wins / (float)totals;
+                }
+
+                return new PlayerStats
+                {
+                    playerId = playerId,
+                    gameHistory = list,
+                    totalGames = totals,
+                    totalWins = wins,
+                    totalLosses = losses,
+                    winLossRatio = ratio,
+                };
+            }
         }
 
         public List<GameInformation> GetGameList()
@@ -45,7 +73,7 @@ namespace GameServer.Controllers
         {
             if (_dataController.CheckUsernameExists(username))
             {
-                throw new Exception("Username already exists.");
+                throw new UsernameAlreadyExistsException();
             }
             var userId = Guid.NewGuid();
 
@@ -55,16 +83,16 @@ namespace GameServer.Controllers
         public PlayerProfile LoginPlayer(string username, string password)
         {
             var profile = _dataController.RetrievePlayerByUsername(username);
-            var storePassword = _dataController.RetreivePlayerPasswordById(profile.id);
+            var storePassword = _dataController.RetrievePlayerPasswordById(profile.id);
 
             if (password != storePassword)
             {
-                throw new Exception("Invalid password!");
+                throw new InvalidPasswordException();
             }
 
-            if (!Program.onlinePlayerList.Contains(profile))
+            if (!_onlinePlayers.Contains(profile))
             {
-                Program.onlinePlayerList.Add(profile);
+                _onlinePlayers.Add(profile);
             }
 
             return profile;
@@ -77,13 +105,21 @@ namespace GameServer.Controllers
                 id = Guid.NewGuid(),
                 username = "Guest",
             };
+
+            if (!_onlinePlayers.Contains(guest))
+            {
+                _onlinePlayers.Add(guest);
+            }
+
+            _dataController.CreatePlayer(guest.id, guest.username, "");
+
             return guest;
         }
 
         public void LogoutPlayer(Guid playerId)
         {
-            var index = Program.onlinePlayerList.FindIndex(x => x.id == playerId);
-            Program.onlinePlayerList.RemoveAt(index);
+            var index = _onlinePlayers.FindIndex(x => x.id == playerId);
+            _onlinePlayers.RemoveAt(index);
         }
     }
 }

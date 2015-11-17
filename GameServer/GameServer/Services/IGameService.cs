@@ -11,22 +11,27 @@ using System.Threading.Tasks;
 namespace GameServer.Services
 {
     [ServiceContract]
-    interface IGameService
+    public interface IGameService
     {
         [OperationContract]
-        [FaultContract(typeof(GameServerFault))]
         MatchState JoinGame(GameType type, Guid playerId);
 
         [OperationContract]
-        [FaultContract(typeof(GameServerFault))]
+        [FaultContract(typeof(PlayerNotInSpecifiedGameFault))]
+        [FaultContract(typeof(EmptyResultsFault))]
         void Quit(Guid matchId, Guid playerId);
 
         [OperationContract]
-        [FaultContract(typeof(GameServerFault))]
+        [FaultContract(typeof(WaitingForPlayersFault))]
+        [FaultContract(typeof(GameIsOverFault))]
+        [FaultContract(typeof(PlayerNotInSpecifiedGameFault))]
+        [FaultContract(typeof(NotPlayersTurnFault))]
+        [FaultContract(typeof(InvalidPlayerMoveFault))]
+        [FaultContract(typeof(EmptyResultsFault))]
         MatchState PlayerMove(Guid matchId, Guid playerId, MovePosition move);
 
         [OperationContract]
-        [FaultContract(typeof(GameServerFault))]
+        [FaultContract(typeof(EmptyResultsFault))]
         MatchState GetMatchState(Guid matchId);
     }
 }

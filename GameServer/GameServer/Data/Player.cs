@@ -17,7 +17,8 @@ namespace GameServer.Data
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Player()
         {
-            this.MatchPlayers = new HashSet<MatchPlayer>();
+            this.Matches = new HashSet<Match>();
+            this.Matches1 = new HashSet<Match>();
         }
     
         public System.Guid id { get; set; }
@@ -25,6 +26,8 @@ namespace GameServer.Data
         public string password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MatchPlayer> MatchPlayers { get; set; }
+        public virtual ICollection<Match> Matches { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Match> Matches1 { get; set; }
     }
 }

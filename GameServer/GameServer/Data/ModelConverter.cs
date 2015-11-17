@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace GameServer.Data
 {
-    class ModelConverter
+    public static class ModelConverter
     {
         public static class FromRow
         {
-            public static List<MatchResult> GetMatchResultsFromMatches(List<Match> matches, List<MatchPlayer> matchPlayers)
+            public static List<MatchResult> GetMatchResultsFromMatches(List<Match> matches)
             {
                 var matchResults = matches.Select(x => new MatchResult
                 {
@@ -20,10 +20,7 @@ namespace GameServer.Data
                     winnerId = x.winner_id,
                     gameStartTime = x.game_start_time,
                     gameEndTime = x.game_end_time,
-                    players = matchPlayers
-                        .FindAll(y => y.match_id == x.id)
-                        .Select(y => y.player_id)
-                        .ToList(),
+                    players = x.Players.Select(y => y.id).ToList(),
                 }).ToList();
 
                 return matchResults;

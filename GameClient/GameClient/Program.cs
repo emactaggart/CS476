@@ -18,13 +18,15 @@ namespace GameClient
         static Program()
         {
             var profile = new PlayerProfile();
-            var stats = new BasicObservable<PlayerStats>(new PlayerStats()); //TODO probably don't need observer here
-            var gameList = new BasicObservable<List<GameInformation>>(new List<GameInformation>()); //TODO: probably don't need observer here
-            var gameService = new GameServiceClient();    //check for connection?
+            var stats = new PlayerStats();
+            var gameList = new List<GameInformation>();
+            var gameService = new GameServiceClient();
             var infoService = new InformationServiceClient();
             var state = new BasicObservable<MatchState>(new MatchState());
             infoController = new InformationController(infoService, profile, stats, gameList);
             gameController = new GameController(gameService, state);
+
+            infoController.GetGameList();
         }
 
         [STAThread]
@@ -32,7 +34,7 @@ namespace GameClient
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SignupPage());
+            Application.Run(new StartupPage());
         }
     }
 }

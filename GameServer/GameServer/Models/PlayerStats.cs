@@ -13,7 +13,7 @@ namespace GameServer.Models
         [DataMember]
         public Guid playerId;
         [DataMember]
-        public float winLossRation;
+        public float winLossRatio;
         [DataMember]
         public int totalGames;
         [DataMember]
